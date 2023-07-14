@@ -1,4 +1,4 @@
-package com.temfriend.backend.post.controller;
+package com.temfriend.backend.modules.post.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
