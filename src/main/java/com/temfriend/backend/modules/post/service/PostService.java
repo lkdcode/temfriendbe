@@ -1,4 +1,4 @@
-package com.temfriend.backend.post.service;
+package com.temfriend.backend.modules.post.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
