@@ -12,12 +12,12 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Profile {
 
-    @Column
+    @Column(name = "member_name", nullable = false)
     private String name;
 
-    @Column
+    @Column(name = "member_nickname", nullable = false)
     private String nickname;
 
-    @Column
+    @Column(name = "member_img", nullable = false)
     private String img;
 }

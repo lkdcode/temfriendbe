@@ -7,14 +7,15 @@ import lombok.Getter;
 import javax.persistence.*;
 
 @Getter
-@Entity(name = "tf_reply")
+@Entity(name = "Reply")
+@Table(name = "tf_reply")
 public class Reply extends TimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "reply_id")
     private Long id;
 
-    @Column
+    @Column(name = "reply_content", nullable = false)
     private String content;
 
     @ManyToOne(fetch = FetchType.LAZY)

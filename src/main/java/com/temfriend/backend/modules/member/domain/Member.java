@@ -8,17 +8,18 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "tf_member")
+@Entity(name = "Member")
+@Table(name = "tf_member")
 public class Member extends TimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
     private Long id;
 
-    @Column
+    @Column(name = "member_account", nullable = false)
     private String account;
 
-    @Column
+    @Column(name = "member_password", nullable = false)
     private String password;
 
     @Embedded

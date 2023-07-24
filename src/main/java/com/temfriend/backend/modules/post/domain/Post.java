@@ -12,17 +12,18 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "tf_post")
+@Entity(name = "Post")
+@Table(name = "tf_post")
 public class Post extends TimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "post_id")
     private Long id;
-    @Column
+    @Column(name = "post_content", nullable = false)
     private String content;
-    @Column
+    @Column(name = "post_start_dt", nullable = false)
     private LocalDateTime startDt;
-    @Column
+    @Column(name = "post_end_dt", nullable = false)
     private LocalDateTime endDt;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -38,4 +39,5 @@ public class Post extends TimeEntity {
     @JoinColumn(name = "reply_id")
     @OrderBy("id desc")
     private List<Reply> replyList;
+
 }
