@@ -8,14 +8,15 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "tf_post_img")
+@Entity(name = "Img")
+@Table(name = "tf_post_img")
 public class Img extends TimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "img_id")
     private Long id;
 
-    @Column
+    @Column(name = "img_path")
     private String path;
 
     @ManyToOne(fetch = FetchType.LAZY)

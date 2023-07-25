@@ -1,8 +1,6 @@
 package com.temfriend.backend.modules.member.domain;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
@@ -12,12 +10,20 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Profile {
 
-    @Column
+    @Column(name = "member_name", nullable = false)
     private String name;
 
-    @Column
+    @Column(name = "member_nickname", nullable = false)
     private String nickname;
 
-    @Column
+    @Column(name = "member_img", nullable = false)
     private String img;
+
+    @Builder
+    public Profile(String name, String nickname, String img) {
+        this.name = name;
+        this.nickname = nickname;
+        this.img = img;
+    }
+
 }

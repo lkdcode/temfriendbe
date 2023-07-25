@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
-@Entity(name = "tf_like")
+@Entity(name = "Like")
+@Table(name = "tf_like")
 public class Like extends TimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
