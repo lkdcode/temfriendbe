@@ -1,6 +1,7 @@
 package com.temfriend.backend.modules.member.domain;
 
 import com.temfriend.backend.global.domain.TimeEntity;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -26,5 +27,24 @@ public class Member extends TimeEntity {
     private Profile profile;
 
     //@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+
+    @Builder
+    public Member(String account, String password, Profile profile) {
+        this.account = account;
+        this.password = password;
+        this.profile = profile;
+    }
+
+    public String getName() {
+        return profile.getName();
+    }
+
+    public String getImg() {
+        return profile.getImg();
+    }
+
+    public String getNickname() {
+        return profile.getNickname();
+    }
 
 }

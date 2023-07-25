@@ -16,7 +16,7 @@ public class Img extends TimeEntity {
     @Column(name = "img_id")
     private Long id;
 
-    @Column(name = "img_path", nullable = false)
+    @Column(name = "img_path")
     private String path;
 
     @ManyToOne(fetch = FetchType.LAZY)
