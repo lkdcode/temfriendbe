@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<String> catchException(ExceptionList exceptionList) {
+    public ResponseEntity<String> catchException(ExceptionCode exceptionList) {
         String message = exceptionList.getMessage();
         log.error("errorMessage : {}", message);
         return ResponseEntity.status(exceptionList.getHttpStatus()).body(message);
