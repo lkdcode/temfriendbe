@@ -7,6 +7,8 @@ import javax.persistence.Embeddable;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 @Embeddable
 public class Profile {
 
@@ -19,11 +21,5 @@ public class Profile {
     @Column(name = "member_img", nullable = false)
     private String img;
 
-    @Builder
-    public Profile(String name, String nickname, String img) {
-        this.name = name;
-        this.nickname = nickname;
-        this.img = img;
-    }
 
 }

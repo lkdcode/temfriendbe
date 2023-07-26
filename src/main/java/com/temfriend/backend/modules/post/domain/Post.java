@@ -2,8 +2,7 @@ package com.temfriend.backend.modules.post.domain;
 
 import com.temfriend.backend.global.domain.TimeEntity;
 import com.temfriend.backend.modules.member.domain.Member;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -11,6 +10,8 @@ import java.util.List;
 
 
 @Getter
+@Builder
+@AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "Post")
 @Table(name = "tf_post")
@@ -26,18 +27,16 @@ public class Post extends TimeEntity {
     @Column(name = "post_end_dt", nullable = false)
     private LocalDateTime endDt;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
-
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinColumn(name = "img_id")
-    @OrderBy("id asc")
-    private List<Img> imgList;
-
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinColumn(name = "reply_id")
-    @OrderBy("id desc")
-    private List<Reply> replyList;
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "member_id")
+//    private Member member;
+//    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+//    @JoinColumn(name = "img_id")
+//    @OrderBy("id asc")
+//    private List<Img> imgList;
+//    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+//    @JoinColumn(name = "reply_id")
+//    @OrderBy("id desc")
+//    private List<Reply> replyList;
 
 }

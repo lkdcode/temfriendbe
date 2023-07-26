@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class PostingCreateService implements PostCreateService {
+
     private final PostRepository postRepository;
 
     @Override

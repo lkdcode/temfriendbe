@@ -1,17 +1,19 @@
 package com.temfriend.backend.modules.member.domain;
 
 import com.temfriend.backend.global.domain.TimeEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import com.temfriend.backend.modules.member.domain.enums.Role;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 @Entity(name = "Member")
 @Table(name = "tf_member")
 public class Member extends TimeEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "member_id")
@@ -26,14 +28,9 @@ public class Member extends TimeEntity {
     @Embedded
     private Profile profile;
 
-    //@OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-
-    @Builder
-    public Member(String account, String password, Profile profile) {
-        this.account = account;
-        this.password = password;
-        this.profile = profile;
-    }
+    @Column(name = "member_role", nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public String getName() {
         return profile.getName();
