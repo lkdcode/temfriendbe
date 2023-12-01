@@ -2,7 +2,7 @@ package com.temfriend.backend.global.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.temfriend.backend.global.exception.AppException;
+import com.temfriend.backend.global.exception.custom.AppException;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 

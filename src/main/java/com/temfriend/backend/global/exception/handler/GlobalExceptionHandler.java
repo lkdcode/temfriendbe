@@ -1,5 +1,6 @@
-package com.temfriend.backend.global.exception;
+package com.temfriend.backend.global.exception.handler;
 
+import com.temfriend.backend.global.exception.custom.AppException;
 import com.temfriend.backend.global.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

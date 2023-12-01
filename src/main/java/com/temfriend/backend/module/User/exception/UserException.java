@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.User.exception;
 
-import com.temfriend.backend.global.exception.ExceptionCode;
+import com.temfriend.backend.global.exception.custom.ExceptionCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

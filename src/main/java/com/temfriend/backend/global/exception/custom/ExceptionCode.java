@@ -1,4 +1,4 @@
-package com.temfriend.backend.global.exception;
+package com.temfriend.backend.global.exception.custom;
 
 import org.springframework.http.HttpStatus;
 
