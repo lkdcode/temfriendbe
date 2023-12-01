@@ -1,13 +1,13 @@
-package com.temfriend.backend.modules.member.exception;
+package com.temfriend.backend.module.User.exception;
 
 import com.temfriend.backend.global.exception.ExceptionCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 
-@RequiredArgsConstructor
 @Getter
-public enum MemberExceptionList implements ExceptionCode {
+@RequiredArgsConstructor
+public enum UserException implements ExceptionCode {
     SIGNUP_FAIL_EXCEPTION(HttpStatus.BAD_REQUEST, "회원가입에 실패했습니다."),
     SIGNIN_FAIL_EXCEPTION(HttpStatus.BAD_REQUEST, "로그인에 실패했습니다."),
     ;
