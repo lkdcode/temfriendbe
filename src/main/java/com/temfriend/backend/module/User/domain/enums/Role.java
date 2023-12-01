@@ -1,4 +1,4 @@
-package com.temfriend.backend.modules.member.domain.enums;
+package com.temfriend.backend.module.User.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -20,6 +20,7 @@ public enum Role {
                 return ROLE_ADMIN;
             }
             default -> {
+                // TODO : CustomException 적용
                 throw new IllegalArgumentException("존재하지 않는 권한입니다.");
             }
         }
