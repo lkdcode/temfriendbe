@@ -1,4 +1,4 @@
-package com.temfriend.backend.module.User.domain.enums;
+package com.temfriend.backend.module.users.domain.enums;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
