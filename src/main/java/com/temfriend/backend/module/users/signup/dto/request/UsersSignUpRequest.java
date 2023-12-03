@@ -25,7 +25,7 @@ public sealed interface UsersSignUpRequest permits Create {
             String name,
             @NotBlank(message = "닉네임을 입력해주세요.")
             @Pattern(regexp = "^[가-힣a-zA-Z]+$", message = "닉네임은 한글 혹은 영어만 가능합니다.")
-            String nickName,
+            String nickname,
             String img
     ) implements UsersSignUpRequest {
     }
