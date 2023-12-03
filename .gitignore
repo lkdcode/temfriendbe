@@ -1,4 +1,6 @@
 application.yml
+application-api.yml
+application-jwt.yml
 
 README.md
 .gradle
