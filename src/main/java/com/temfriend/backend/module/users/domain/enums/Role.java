@@ -13,15 +13,11 @@ public enum Role {
 
     public static Role from(String role) {
         switch (role) {
-            case "USER" -> {
-                return ROLE_USER;
-            }
             case "ADMIN" -> {
                 return ROLE_ADMIN;
             }
             default -> {
-                // TODO : CustomException 적용
-                throw new IllegalArgumentException("존재하지 않는 권한입니다.");
+                return ROLE_USER;
             }
         }
     }
