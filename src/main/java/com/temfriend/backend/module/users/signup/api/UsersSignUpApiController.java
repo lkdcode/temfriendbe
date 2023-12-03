@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("${api.users}")
 @RequiredArgsConstructor
@@ -18,9 +20,9 @@ public class UsersSignUpApiController {
 
     @PostMapping("/sign-up")
     public SuccessResponse<UsersSignUpResponse.Create> getSignUp(
-            @RequestBody UsersSignUpRequest.Create request
+            @RequestBody @Valid UsersSignUpRequest.Create request
     ) {
-        UsersSignUpResponse.Create response = usersSignUpService.executeSignup(request);
+        UsersSignUpResponse.Create response = usersSignUpService.executeSignUp(request);
         return SuccessResponse
                 .ok(response);
     }
