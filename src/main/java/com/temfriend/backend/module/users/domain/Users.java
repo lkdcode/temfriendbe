@@ -25,10 +25,18 @@ public class Users extends BaseEntity {
     private Profile profile;
 
     @Builder
-    public Users(String email, String password, Role role, Profile profile) {
+    public Users(String email, String password, String role, String name, String nickname, String img) {
         this.email = email;
         this.password = password;
-        this.role = role;
-        this.profile = profile;
+        this.role = Role.from(role);
+        this.profile = Profile.builder()
+                .name(name)
+                .nickname(nickname)
+                .img(img)
+                .build();
+    }
+
+    public void promoteGrade() {
+        this.profile.promoteGrade();
     }
 }
