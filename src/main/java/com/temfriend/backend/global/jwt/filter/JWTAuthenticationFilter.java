@@ -11,7 +11,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 @RequiredArgsConstructor
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
@@ -27,10 +26,9 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
     ) throws ServletException, IOException {
         String accessToken = extractTokenFromHeader(request);
 
-        if (accessToken != null) {
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                    jwtProvider.getCustomUsersDetail(accessToken), "", List.of()
-            );
+        if (accessToken != null && jwtProvider.validateToken(accessToken)) {
+            UsernamePasswordAuthenticationToken authentication =
+                    jwtProvider.getUsernamePasswordAuthenticationToken(accessToken);
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }

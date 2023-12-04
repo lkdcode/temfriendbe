@@ -3,6 +3,7 @@ package com.temfriend.backend.module.users.common.service;
 import com.temfriend.backend.module.users.auth.dto.request.AuthRequestDTO;
 import com.temfriend.backend.module.users.common.exception.custom.DuplicateUsersException;
 import com.temfriend.backend.module.users.common.exception.custom.NotFoundUsersByEmailException;
+import com.temfriend.backend.module.users.common.exception.custom.PasswordMismatchException;
 import com.temfriend.backend.module.users.common.exception.enums.UsersException;
 import com.temfriend.backend.module.users.domain.repository.UsersRepository;
 import com.temfriend.backend.module.users.signup.dto.request.UsersSignUpRequest;
@@ -17,10 +18,17 @@ public class UsersValidator {
     public void validateSignUpRequest(UsersSignUpRequest.Create request) {
         verifyDuplicateEmail(request.email());
         verifyDuplicateNickname(request.nickname());
+        verifyInputPasswords(request.password(), request.confirmPassword());
     }
 
     public void validateLogInRequest(AuthRequestDTO.LogIn request) {
         verifyUserNotExistsByEmail(request.email());
+    }
+
+    private void verifyInputPasswords(String password, String confirmPassword) {
+        if (!password.equals(confirmPassword)) {
+            throw new PasswordMismatchException(UsersException.PASSWORD_MISMATCH_ERROR);
+        }
     }
 
     private void verifyDuplicateEmail(String email) {

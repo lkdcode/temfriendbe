@@ -1,42 +1,31 @@
 package com.temfriend.backend.module.users.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
+
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
 public class Profile {
-    private enum Grade {
-        BRONZE, SILVER, GOLD
-    }
-
+    @JsonProperty(access = READ_ONLY)
     @Column(nullable = false)
     private String name;
-
+    @JsonProperty(access = READ_ONLY)
     @Column(nullable = false, unique = true)
     private String nickname;
-
+    @JsonProperty(access = READ_ONLY)
     @Column(nullable = false)
     private String img;
-
-    @Column(nullable = false)
-    private Grade grade;
 
     @Builder
     public Profile(String name, String nickname, String img) {
         this.name = name;
         this.nickname = nickname;
         this.img = img;
-        this.grade = Grade.BRONZE;
-    }
-
-    public void promoteGrade() {
-        switch (this.grade) {
-            case BRONZE -> this.grade = Grade.SILVER;
-            case SILVER -> this.grade = Grade.GOLD;
-        }
     }
 }
