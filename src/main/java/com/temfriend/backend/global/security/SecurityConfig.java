@@ -22,15 +22,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class SecurityConfig {
     public static final String[] PUBLIC = new String[]{
             "/h2-console/**"
+            ,
     };
 
     public static final String[] GET_PUBLIC = new String[]{
-            "/${api.users}/**"
+            "/api/users/**"
+            ,
     };
 
     public static final String[] POST_PUBLIC = new String[]{
-            "/${api.users}/sign-up"
-            , "/${api.users}/sign-in"
+            "/api/users/sign-up"
+            , "/api/users/log-in"
+            ,
     };
 
     private final JWTProvider jwtProvider;
@@ -40,11 +43,13 @@ public class SecurityConfig {
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.headers().frameOptions().disable();
-
-        return http.httpBasic()
+        return http
+                .headers()
+                .frameOptions()
                 .disable()
-                .csrf().disable()
+                .and()
+                .csrf()
+                .disable()
                 .sessionManagement(
                         session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
@@ -53,17 +58,19 @@ public class SecurityConfig {
                                 .antMatchers(HttpMethod.GET, GET_PUBLIC).permitAll()
                                 .antMatchers(HttpMethod.POST, POST_PUBLIC).permitAll()
                                 .antMatchers(PUBLIC).permitAll()
-                                .antMatchers("/api/admin/**").hasRole("ADMIN")
-                                .antMatchers("/api/user/**").hasRole("USER")
+                                .antMatchers("/admin/**").hasAuthority("ADMIN")
                                 .anyRequest().authenticated())
                 .addFilterBefore(
                         new JWTAuthenticationFilter(jwtProvider),
                         UsernamePasswordAuthenticationFilter.class)
+                .httpBasic().disable()
+                .formLogin().disable()
                 .build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
+//        return PasswordEncoderFactories.createDelegatingPasswordEncoder();
         return new BCryptPasswordEncoder(12);
     }
 }
