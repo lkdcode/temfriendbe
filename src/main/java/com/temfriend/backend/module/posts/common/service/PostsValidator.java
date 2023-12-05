@@ -1,7 +1,8 @@
 package com.temfriend.backend.module.posts.common.service;
 
-import com.temfriend.backend.module.posts.domain.repository.PostsRepository;
-import com.temfriend.backend.module.users.domain.repository.UsersRepository;
+import com.temfriend.backend.module.posts.common.exception.custom.PostsAccessDeniedException;
+import com.temfriend.backend.module.posts.common.exception.enums.PostsException;
+import com.temfriend.backend.module.posts.domain.Posts;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,11 +11,10 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class PostsValidator {
-    private final PostsRepository postsRepository;
-    private final UsersRepository usersRepository;
 
-    public void validateAuthorship(Long postsId, Long usersId) {
-        postsRepository.findById(postsId);
+    public void validateAuthorship(Posts posts, Long usersId) throws PostsAccessDeniedException {
+        if (!posts.getId().equals(usersId)) {
+            throw new PostsAccessDeniedException(PostsException.NOT_MATCHES);
+        }
     }
-
 }
