@@ -1,8 +1,8 @@
 package com.temfriend.backend.module.posts.command.service.impl;
 
 import com.temfriend.backend.global.security.CustomUsersDetail;
-import com.temfriend.backend.module.posts.command.dto.request.PostsRequestDTO;
-import com.temfriend.backend.module.posts.command.dto.response.PostsResponseDTO;
+import com.temfriend.backend.module.posts.command.dto.request.PostsCommandRequestDTO;
+import com.temfriend.backend.module.posts.command.dto.response.PostsCommandResponseDTO;
 import com.temfriend.backend.module.posts.command.mapper.request.PostsRequestMapper;
 import com.temfriend.backend.module.posts.command.service.PostsCommandUsecase;
 import com.temfriend.backend.module.posts.common.service.PostsLoadService;
@@ -26,8 +26,8 @@ public class PostsCommandService implements PostsCommandUsecase {
     private final UsersLoadService usersLoadService;
 
     @Override
-    public PostsResponseDTO.Create executePostsSave(
-            PostsRequestDTO.Create request
+    public PostsCommandResponseDTO.Create executePostsSave(
+            PostsCommandRequestDTO.Create request
             , CustomUsersDetail customUsersDetail
     ) {
         Users users = usersLoadService.loadUsersFromEmail(customUsersDetail.getEmail());
@@ -35,71 +35,40 @@ public class PostsCommandService implements PostsCommandUsecase {
 
         Posts saved = postsRepository.save(posts);
 
-        return PostsResponseDTO.Create.builder()
+        return PostsCommandResponseDTO.Create.builder()
                 .id(saved.getId())
                 .message("게시글 작성에 성공했습니다.")
                 .build();
     }
 
     @Override
-    public PostsResponseDTO.Update executePostsUpdate(
-            PostsRequestDTO.Update request
+    public PostsCommandResponseDTO.Update executePostsUpdate(
+            PostsCommandRequestDTO.Update request
             , CustomUsersDetail customUsersDetail
             , Long postsId
     ) {
-        postsValidator.validateAuthorship(postsId, customUsersDetail.getId());
-
         Posts posts = postsLoadService.loadPostsFromId(postsId);
+
+        postsValidator.validateAuthorship(posts, customUsersDetail.getId());
         posts.update(request.title(), request.content());
 
-        return PostsResponseDTO.Update.builder()
+        return PostsCommandResponseDTO.Update.builder()
                 .id(posts.getId())
                 .message("업데이트에 성공했습니다.")
                 .build();
     }
 
     @Override
-    public PostsResponseDTO.Update executePostsUpdate(
-            PostsRequestDTO.UpdateOnlyTitle request
-            , CustomUsersDetail customUsersDetail
-            , Long postsId
-    ) {
-        postsValidator.validateAuthorship(postsId, customUsersDetail.getId());
-
-        Posts posts = postsLoadService.loadPostsFromId(postsId);
-        posts.update(request.title(), null);
-
-        return PostsResponseDTO.Update.builder()
-                .id(posts.getId())
-                .message("업데이트에 성공했습니다.")
-                .build();
-    }
-
-    @Override
-    public PostsResponseDTO.Update executePostsUpdate(
-            PostsRequestDTO.UpdateOnlyContent request
-            , CustomUsersDetail customUsersDetail
-            , Long postsId
-    ) {
-        postsValidator.validateAuthorship(postsId, customUsersDetail.getId());
-
-        Posts posts = postsLoadService.loadPostsFromId(postsId);
-        posts.update(null, request.content());
-
-        return PostsResponseDTO.Update.builder()
-                .id(posts.getId())
-                .message("업데이트에 성공했습니다.")
-                .build();
-    }
-
-    @Override
-    public PostsResponseDTO.Delete executePostsDelete(
+    public PostsCommandResponseDTO.Delete executePostsDelete(
             Long id
             , CustomUsersDetail customUsersDetail
     ) {
+        Posts posts = postsLoadService.loadPostsFromId(id);
+
+        postsValidator.validateAuthorship(posts, customUsersDetail.getId());
         postsRepository.deleteById(id);
 
-        return PostsResponseDTO.Delete.builder()
+        return PostsCommandResponseDTO.Delete.builder()
                 .id(id)
                 .message("삭제에 성공했습니다.")
                 .build();
