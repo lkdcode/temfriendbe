@@ -1,7 +1,7 @@
 package com.temfriend.backend.module.users.domain;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.temfriend.backend.global.domain.BaseEntity;
+import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.users.domain.enums.Authority;
 import com.temfriend.backend.module.users.domain.enums.Grade;
 import lombok.AccessLevel;
@@ -10,8 +10,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
-import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
@@ -25,13 +25,15 @@ public class Users extends BaseEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Grade grade;
-
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Authority authority;
 
     @Embedded
     private Profile profile;
+
+    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Posts> postList = new ArrayList<>();
 
     @Builder
     public Users(String email, String password, String grade, String name, String nickname, String img) {
