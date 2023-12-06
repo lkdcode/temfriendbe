@@ -1,6 +1,7 @@
 package com.temfriend.backend.global.jwt.filter;
 
 import com.temfriend.backend.global.jwt.JWTProvider;
+import com.temfriend.backend.global.security.cookie.CookieProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,9 +15,8 @@ import java.io.IOException;
 
 @RequiredArgsConstructor
 public class JWTAuthenticationFilter extends OncePerRequestFilter {
-    private final static String HEADER_AUTHORIZATION = "Authorization";
-    private final static String TOKEN_PREFIX = "Bearer ";
     private final JWTProvider jwtProvider;
+    private final CookieProvider cookieProvider;
 
     @Override
     protected void doFilterInternal(
@@ -24,32 +24,17 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
             , HttpServletResponse response
             , FilterChain filterChain
     ) throws ServletException, IOException {
-        String accessToken = extractTokenFromHeader(request);
+        String cookie = cookieProvider.findCookieByKey(request, jwtProvider.getAuthorization());
+        String token = jwtProvider.parseToken(cookie);
+        boolean validateToken = jwtProvider.validateToken(token);
 
-        if (accessToken != null && jwtProvider.validateToken(accessToken)) {
+        if (validateToken) {
             UsernamePasswordAuthenticationToken authentication =
-                    jwtProvider.getUsernamePasswordAuthenticationToken(accessToken);
+                    jwtProvider.getUsernamePasswordAuthenticationToken(token);
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
 
         filterChain.doFilter(request, response);
-    }
-
-    private static String extractTokenFromHeader(HttpServletRequest request) {
-        String authorizationHeader = getAuthorizationHeader(request);
-        return getAccessToken(authorizationHeader);
-    }
-
-    private static String getAuthorizationHeader(HttpServletRequest request) {
-        return request.getHeader(HEADER_AUTHORIZATION);
-    }
-
-    private static String getAccessToken(String authorizationHeader) {
-        if (authorizationHeader != null && authorizationHeader.startsWith(TOKEN_PREFIX)) {
-            return authorizationHeader.substring(TOKEN_PREFIX.length());
-        }
-
-        return null;
     }
 }

@@ -12,13 +12,10 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Embeddable
 public class Profile {
-    @JsonProperty(access = READ_ONLY)
     @Column(nullable = false)
     private String name;
-    @JsonProperty(access = READ_ONLY)
     @Column(nullable = false, unique = true)
     private String nickname;
-    @JsonProperty(access = READ_ONLY)
     @Column(nullable = false)
     private String img;
 

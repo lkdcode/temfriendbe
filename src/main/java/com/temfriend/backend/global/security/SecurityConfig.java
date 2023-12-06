@@ -2,6 +2,7 @@ package com.temfriend.backend.global.security;
 
 import com.temfriend.backend.global.jwt.JWTProvider;
 import com.temfriend.backend.global.jwt.filter.JWTAuthenticationFilter;
+import com.temfriend.backend.global.security.cookie.CookieProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -37,6 +38,7 @@ public class SecurityConfig {
     };
 
     private final JWTProvider jwtProvider;
+    private final CookieProvider cookieService;
 
     @Autowired
     private Environment environment;
@@ -61,7 +63,7 @@ public class SecurityConfig {
                                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                                 .anyRequest().authenticated())
                 .addFilterBefore(
-                        new JWTAuthenticationFilter(jwtProvider),
+                        new JWTAuthenticationFilter(jwtProvider, cookieService),
                         UsernamePasswordAuthenticationFilter.class)
                 .httpBasic().disable()
                 .formLogin().disable()

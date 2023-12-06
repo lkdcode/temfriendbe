@@ -18,17 +18,14 @@ import static com.fasterxml.jackson.annotation.JsonProperty.Access.READ_ONLY;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseEntity {
-    @JsonProperty(access = READ_ONLY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @JsonProperty(access = READ_ONLY)
     @CreatedDate
     @JsonFormat(shape = STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "Asia/Seoul")
     private LocalDateTime createdAt;
 
-    @JsonProperty(access = READ_ONLY)
     @LastModifiedDate
     @JsonFormat(shape = STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", timezone = "Asia/Seoul")
     private LocalDateTime updatedAt;

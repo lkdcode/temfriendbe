@@ -21,7 +21,7 @@ public class UsersLoadService {
     }
 
     public Users loadUsersFromLogInEmail(String email) {
-        return usersRepository.findByEmail(email)
-                .orElseThrow(() -> new LogInFailException(UsersException.LOGIN_FAIL_INVALID_CREDENTIALS));
+        return usersRepository.findByEmail(email).orElseThrow(() ->
+                new LogInFailException(UsersException.LOGIN_FAIL_INVALID_CREDENTIALS));
     }
 }

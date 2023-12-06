@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 @RestController
@@ -22,9 +23,10 @@ public class AuthApiController {
 
     @PostMapping("/log-in")
     public SuccessResponse<AuthResponseDTO.LogIn> getLogIn(
-            @RequestBody @Valid AuthRequestDTO.LogIn request
+            @RequestBody @Valid AuthRequestDTO.LogIn request,
+            HttpServletResponse httpServletResponse
     ) {
-        AuthResponseDTO.LogIn response = authService.executeLogIn(request);
+        AuthResponseDTO.LogIn response = authService.executeLogIn(httpServletResponse, request);
         return SuccessResponse.ok(response);
     }
 
