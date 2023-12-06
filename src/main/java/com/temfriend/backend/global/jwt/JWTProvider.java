@@ -16,6 +16,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class JWTProvider {
+    private final static String AUTHORIZATION = "Authorization";
+    private final static String TOKEN_PREFIX = "Bearer+";
     private static final String EMAIL = "email";
     private static final String ID = "id";
     private static final String GRADE = "grade";
@@ -27,7 +29,7 @@ public class JWTProvider {
         Date expiration = new Date();
         expiration.setTime(expiration.getTime() + jwtProperties.getExpired());
 
-        return Jwts.builder()
+        String accessToken = Jwts.builder()
                 .setHeaderParam(Header.TYPE, Header.JWT_TYPE)
                 .setIssuer(jwtProperties.getIssuer())
                 .setIssuedAt(now)
@@ -38,6 +40,8 @@ public class JWTProvider {
                 .claim(AUTHORITY, users.getAuthority())
                 .signWith(jwtProperties.getSecretKey(), SignatureAlgorithm.HS256)
                 .compact();
+
+        return TOKEN_PREFIX + accessToken;
     }
 
     public boolean validateToken(String token) {
@@ -58,6 +62,18 @@ public class JWTProvider {
         return new UsernamePasswordAuthenticationToken(
                 customUsersDetail, "", customUsersDetail.getAuthorities()
         );
+    }
+
+    public String parseToken(String value) {
+        if (value != null && value.startsWith(TOKEN_PREFIX)) {
+            return value.substring(TOKEN_PREFIX.length());
+        }
+
+        return null;
+    }
+
+    public String getAuthorization() {
+        return AUTHORIZATION;
     }
 
     private CustomUsersDetail getCustomUsersDetail(String token) {
