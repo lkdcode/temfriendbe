@@ -11,6 +11,7 @@ import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.posts.domain.repository.PostsRepository;
 import com.temfriend.backend.module.users.common.service.UsersLoadService;
 import com.temfriend.backend.module.users.domain.Users;
+import com.temfriend.backend.module.points.command.PointsCommandUsecase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +25,7 @@ public class PostsCommandService implements PostsCommandUsecase {
     private final PostsValidator postsValidator;
     private final PostsRepository postsRepository;
     private final UsersLoadService usersLoadService;
+    private final PointsCommandUsecase pointsCommandUsecase;
 
     @Override
     public PostsCommandResponseDTO.Create executePostsSave(
@@ -34,6 +36,7 @@ public class PostsCommandService implements PostsCommandUsecase {
         Posts posts = PostsRequestMapper.INSTANCE.createDTOToPosts(request, users);
 
         Posts saved = postsRepository.save(posts);
+        pointsCommandUsecase.executeIncrementPointsFromCreatePosts(users);
 
         return PostsCommandResponseDTO.Create.builder()
                 .id(saved.getId())
