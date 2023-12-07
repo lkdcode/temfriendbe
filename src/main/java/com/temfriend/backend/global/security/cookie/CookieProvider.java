@@ -14,6 +14,7 @@ public class CookieProvider {
     private static final String PATH = "/";
     private static final String ENC = "UTF-8";
     private static final int MAX_AGE = 60 * 60;
+    private static final int MIN_AGE = 0;
 
     public String findCookieByKey(HttpServletRequest httpServletRequest, String key) {
         try {
@@ -21,13 +22,11 @@ public class CookieProvider {
 
             for (Cookie cookie : cookies) {
                 if (cookie.getName().equals(key)) {
-                    String decode = URLDecoder.decode(cookie.getValue(), ENC);
-                    System.out.println(decode);
-                    return decode;
+                    return URLDecoder.decode(cookie.getValue(), ENC);
                 }
             }
             return null;
-        } catch (UnsupportedEncodingException e) {
+        } catch (Exception e) {
             return null;
         }
     }
@@ -40,6 +39,17 @@ public class CookieProvider {
             cookie.setHttpOnly(true);
             httpServletResponse.addCookie(cookie);
         } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void removeCookieByKey(HttpServletResponse httpServletResponse, String key) {
+        try {
+            Cookie cookie = new Cookie(key, null);
+            cookie.setPath(PATH);
+            cookie.setMaxAge(MIN_AGE);
+            httpServletResponse.addCookie(cookie);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
