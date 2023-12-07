@@ -7,9 +7,11 @@ import io.jsonwebtoken.Header;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 
@@ -17,12 +19,14 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JWTProvider {
     private final static String AUTHORIZATION = "Authorization";
-    private final static String TOKEN_PREFIX = "Bearer+";
+    private final static String TOKEN_PREFIX = "Bearer ";
     private static final String EMAIL = "email";
     private static final String ID = "id";
     private static final String GRADE = "grade";
     private static final String AUTHORITY = "authority";
+    private static final String BLACK_LIST = "BLACKLISTED";
     private final JWTProperties jwtProperties;
+    private final StringRedisTemplate stringRedisTemplate;
 
     public String generateToken(Users users) {
         Date now = new Date();
@@ -70,6 +74,15 @@ public class JWTProvider {
         }
 
         return null;
+    }
+
+    public void addBlackListToken(String token) {
+        stringRedisTemplate.opsForValue()
+                .set(token, BLACK_LIST, Duration.ofMillis(jwtProperties.getExpired()));
+    }
+
+    public boolean isBlackListToken(String token) {
+        return BLACK_LIST.equals(stringRedisTemplate.opsForValue().get(token));
     }
 
     public String getAuthorization() {
