@@ -1,7 +1,7 @@
 package com.temfriend.backend.global.security;
 
 import com.temfriend.backend.global.jwt.JWTProvider;
-import com.temfriend.backend.global.jwt.filter.JWTAuthenticationFilter;
+import com.temfriend.backend.global.filter.JWTAuthenticationFilter;
 import com.temfriend.backend.global.security.cookie.CookieProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

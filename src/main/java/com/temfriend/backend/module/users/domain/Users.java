@@ -1,7 +1,6 @@
 package com.temfriend.backend.module.users.domain;
 
 import com.temfriend.backend.global.domain.BaseEntity;
-import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.users.domain.enums.Authority;
 import com.temfriend.backend.module.users.domain.enums.Grade;
 import lombok.AccessLevel;
@@ -10,8 +9,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
@@ -32,8 +29,6 @@ public class Users extends BaseEntity {
     @Embedded
     private Profile profile;
 
-    @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Posts> postList = new ArrayList<>();
 
     @Builder
     public Users(String email, String password, String grade, String name, String nickname, String img) {

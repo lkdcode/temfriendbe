@@ -1,4 +1,4 @@
-package com.temfriend.backend.global.jwt.filter;
+package com.temfriend.backend.global.filter;
 
 import com.temfriend.backend.global.jwt.JWTProvider;
 import com.temfriend.backend.global.security.cookie.CookieProvider;
@@ -28,7 +28,7 @@ public class JWTAuthenticationFilter extends OncePerRequestFilter {
         String token = jwtProvider.parseToken(cookie);
         boolean validateToken = jwtProvider.validateToken(token);
 
-        if (validateToken) {
+        if (validateToken && !jwtProvider.isBlackListToken(token)) {
             UsernamePasswordAuthenticationToken authentication =
                     jwtProvider.getUsernamePasswordAuthenticationToken(token);
 

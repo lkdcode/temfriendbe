@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -32,9 +33,11 @@ public class AuthApiController {
 
     @PostMapping("/log-out")
     public SuccessResponse<AuthResponseDTO.LogOut> getLogOut(
-            @AuthenticationPrincipal CustomUsersDetail customUsersDetail
+            HttpServletRequest httpServletRequest
+            , HttpServletResponse httpServletResponse
+            , @AuthenticationPrincipal CustomUsersDetail customUsersDetail
     ) {
-        AuthResponseDTO.LogOut response = authService.executeLogOut(customUsersDetail);
+        AuthResponseDTO.LogOut response = authService.executeLogOut(httpServletRequest, httpServletResponse, customUsersDetail);
         return SuccessResponse.ok(response);
     }
 }

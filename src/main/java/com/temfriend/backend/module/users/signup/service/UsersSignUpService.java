@@ -4,6 +4,7 @@ import com.temfriend.backend.module.users.common.service.UsersPasswordService;
 import com.temfriend.backend.module.users.common.service.UsersValidator;
 import com.temfriend.backend.module.users.domain.Users;
 import com.temfriend.backend.module.users.domain.repository.UsersRepository;
+import com.temfriend.backend.module.points.command.PointsCommandUsecase;
 import com.temfriend.backend.module.users.signup.dto.rseponse.UsersSignUpResponse;
 import com.temfriend.backend.module.users.signup.mapper.UsersSignUpMapper;
 import lombok.RequiredArgsConstructor;
@@ -20,12 +21,14 @@ public class UsersSignUpService {
     private final UsersRepository usersRepository;
     private final UsersValidator usersValidator;
     private final UsersPasswordService usersPasswordService;
+    private final PointsCommandUsecase pointsCommandUsecase;
 
     public UsersSignUpResponse.Create executeSignUp(Create request) {
         usersValidator.validateSignUpRequest(request);
         String encodedPassword = usersPasswordService.encode(request.password());
         Users users = UsersSignUpMapper.INSTANCE.SignUpDTOToUsers(request, encodedPassword);
-        usersRepository.save(users);
+        Users saved = usersRepository.save(users);
+        pointsCommandUsecase.executeCreatePointsByUsers(saved);
 
         return new UsersSignUpResponse.Create(SUCCESS_MESSAGE);
     }
