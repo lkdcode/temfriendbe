@@ -33,7 +33,7 @@ public class PostsCommandService implements PostsCommandUsecase {
             , CustomUsersDetail customUsersDetail
     ) {
         Users users = usersLoadService.loadUsersFromEmail(customUsersDetail.getEmail());
-        Posts posts = PostsRequestMapper.INSTANCE.createDTOToPosts(request, users);
+        Posts posts = PostsRequestMapper.INSTANCE.convertPostsFrom(request, users);
 
         Posts saved = postsRepository.save(posts);
         pointsCommandUsecase.executeIncrementPointsFromCreatePosts(users);
@@ -69,7 +69,7 @@ public class PostsCommandService implements PostsCommandUsecase {
         Posts posts = postsLoadService.loadPostsFromId(id);
 
         postsValidator.validateAuthorship(posts, customUsersDetail.getId());
-        postsRepository.deleteById(id);
+        posts.remove();
 
         return PostsCommandResponseDTO.Delete.builder()
                 .id(id)
