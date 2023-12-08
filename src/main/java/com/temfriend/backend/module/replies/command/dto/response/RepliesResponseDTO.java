@@ -8,16 +8,14 @@ public sealed interface RepliesResponseDTO permits Create, Update, Delete {
     @Builder
     record Create(
             Long id,
-            String content,
-            String message
+            String content
     ) implements RepliesResponseDTO {
     }
 
     @Builder
     record Update(
             Long id,
-            String content,
-            String message
+            String content
     ) implements RepliesResponseDTO {
     }
 
