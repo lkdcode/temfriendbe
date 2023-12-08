@@ -26,7 +26,7 @@ public class UsersSignUpService {
     public UsersSignUpResponse.Create executeSignUp(Create request) {
         usersValidator.validateSignUpRequest(request);
         String encodedPassword = usersPasswordService.encode(request.password());
-        Users users = UsersSignUpMapper.INSTANCE.SignUpDTOToUsers(request, encodedPassword);
+        Users users = UsersSignUpMapper.INSTANCE.convertUsersFrom(request, encodedPassword);
         Users saved = usersRepository.save(users);
         pointsCommandUsecase.executeCreatePointsByUsers(saved);
 
