@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.posts.query.api;
 
-import com.temfriend.backend.global.response.SuccessResponse;
+import com.temfriend.backend.global.common.response.SuccessResponse;
 import com.temfriend.backend.module.posts.query.dto.response.PostsQueryResponseDTO;
 import com.temfriend.backend.module.posts.query.service.PostsQueryUsecase;
 import lombok.RequiredArgsConstructor;

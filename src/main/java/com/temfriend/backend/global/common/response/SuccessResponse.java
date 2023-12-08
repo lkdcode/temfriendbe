@@ -1,4 +1,4 @@
-package com.temfriend.backend.global.response;
+package com.temfriend.backend.global.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;

@@ -1,7 +1,7 @@
-package com.temfriend.backend.global.exception.handler;
+package com.temfriend.backend.global.common.exception.handler;
 
-import com.temfriend.backend.global.exception.custom.AppException;
-import com.temfriend.backend.global.response.ErrorResponse;
+import com.temfriend.backend.global.common.exception.custom.AppException;
+import com.temfriend.backend.global.common.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;

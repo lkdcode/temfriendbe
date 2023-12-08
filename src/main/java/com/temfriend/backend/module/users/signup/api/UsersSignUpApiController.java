@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.users.signup.api;
 
-import com.temfriend.backend.global.response.SuccessResponse;
+import com.temfriend.backend.global.common.response.SuccessResponse;
 import com.temfriend.backend.module.users.signup.dto.request.UsersSignUpRequest;
 import com.temfriend.backend.module.users.signup.dto.rseponse.UsersSignUpResponse;
 import com.temfriend.backend.module.users.signup.service.UsersSignUpService;
