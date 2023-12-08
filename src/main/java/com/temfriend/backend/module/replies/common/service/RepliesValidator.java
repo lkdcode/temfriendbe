@@ -1,7 +1,7 @@
 package com.temfriend.backend.module.replies.common.service;
 
 import com.temfriend.backend.module.replies.common.exception.custom.RepliesAccessDeniedException;
-import com.temfriend.backend.module.replies.common.exception.enums.RepliesErrorCode;
+import com.temfriend.backend.module.replies.common.exception.error.RepliesErrorCode;
 import com.temfriend.backend.module.replies.domain.Replies;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.RequiredArgsConstructor;

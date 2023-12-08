@@ -1,7 +1,7 @@
 package com.temfriend.backend.module.users.common.service;
 
 import com.temfriend.backend.module.users.common.exception.custom.LogInFailException;
-import com.temfriend.backend.module.users.common.exception.enums.UsersException;
+import com.temfriend.backend.module.users.common.exception.error.UsersErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -21,7 +21,7 @@ public class UsersPasswordService {
 
     public void validatePassword(String rawPassword, String encodedPassword) {
         if (!passwordEncoder.matches(rawPassword, encodedPassword)) {
-            throw new LogInFailException(UsersException.LOGIN_FAIL_INVALID_CREDENTIALS);
+            throw new LogInFailException(UsersErrorCode.LOGIN_FAIL_INVALID_CREDENTIALS);
         }
     }
 }

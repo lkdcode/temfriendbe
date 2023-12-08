@@ -1,6 +1,6 @@
 package com.temfriend.backend.global.common.exception.handler;
 
-import com.temfriend.backend.global.common.exception.custom.AppException;
+import com.temfriend.backend.global.common.exception.custom.CustomException;
 import com.temfriend.backend.global.common.response.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -13,9 +13,9 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(AppException.class)
-    public ResponseEntity<ErrorResponse> handleAppException(AppException e) {
-        log.error("AppException. message : {} , httpStatus : {}" + e.getMessage(), e.getHttpStatus());
+    @ExceptionHandler(CustomException.class)
+    public ResponseEntity<ErrorResponse> handleCustomException(CustomException e) {
+        log.error("[AppException] ErrorCode : {}, ErrorHttpStatus : {}, ErrorMessage : {}", e.getCode(), e.getHttpStatus(), e.getMessage());
 
         return ResponseEntity
                 .status(e.getHttpStatus())
@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
                 .get(0)
                 .getDefaultMessage();
 
-        log.error("Valid. message : {}", message);
+        log.error("[Valid] ErrorMessage : {}", message);
 
         return ResponseEntity
                 .badRequest()
@@ -43,18 +43,17 @@ public class GlobalExceptionHandler {
 
         message = message.substring(message.indexOf("<") + 1, message.indexOf(">"));
 
-        log.error("HttpMessageNotReadableException. message : {}", message);
+        log.error("[HttpMessageNotReadableException] ErrorMessage : {}", message);
 
         return ResponseEntity
                 .badRequest()
-                // TODO : ErrorCode
                 .body("누락된 본문 요청 : " + message);
     }
 
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<?> handleRuntimeException(RuntimeException e) {
         String message = e.getMessage();
-        log.error("RuntimeException. message : {}", message);
+        log.error("[RuntimeException] ErrorMessage : {}", message);
 
         return ResponseEntity
                 .internalServerError()

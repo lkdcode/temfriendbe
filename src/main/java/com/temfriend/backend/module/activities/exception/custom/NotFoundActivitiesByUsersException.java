@@ -1,10 +1,10 @@
 package com.temfriend.backend.module.activities.exception.custom;
 
-import com.temfriend.backend.global.common.exception.custom.AppException;
-import com.temfriend.backend.global.common.exception.custom.ExceptionCode;
+import com.temfriend.backend.global.common.exception.custom.CustomException;
+import com.temfriend.backend.global.common.exception.custom.ErrorCode;
 
-public class NotFoundActivitiesByUsersException extends AppException {
-    public NotFoundActivitiesByUsersException(ExceptionCode exceptionCode) {
+public class NotFoundActivitiesByUsersException extends CustomException {
+    public NotFoundActivitiesByUsersException(ErrorCode exceptionCode) {
         super(exceptionCode);
     }
 }

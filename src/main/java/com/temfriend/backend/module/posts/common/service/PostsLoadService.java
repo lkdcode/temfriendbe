@@ -1,7 +1,7 @@
 package com.temfriend.backend.module.posts.common.service;
 
 import com.temfriend.backend.module.posts.common.exception.custom.NotFoundPostsByIdException;
-import com.temfriend.backend.module.posts.common.exception.enums.PostsException;
+import com.temfriend.backend.module.posts.common.exception.enums.PostsErrorCode;
 import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.posts.domain.repository.PostsRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +20,7 @@ public class PostsLoadService {
 
     public Posts loadPostsFromId(Long id) throws NotFoundPostsByIdException {
         return postsRepository.findById(id).orElseThrow(() ->
-                new NotFoundPostsByIdException(PostsException.NOT_FOUNT_POSTS_FROM_ID));
+                new NotFoundPostsByIdException(PostsErrorCode.NOT_FOUNT_POSTS_FROM_ID));
     }
 
     public List<Posts> loadPostsList(Pageable pageable) {

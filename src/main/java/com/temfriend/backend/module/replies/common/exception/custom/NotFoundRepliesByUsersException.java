@@ -1,10 +1,10 @@
 package com.temfriend.backend.module.replies.common.exception.custom;
 
-import com.temfriend.backend.global.common.exception.custom.AppException;
-import com.temfriend.backend.global.common.exception.custom.ExceptionCode;
+import com.temfriend.backend.global.common.exception.custom.CustomException;
+import com.temfriend.backend.global.common.exception.custom.ErrorCode;
 
-public class NotFoundRepliesByUsersException extends AppException {
-    public NotFoundRepliesByUsersException(ExceptionCode exceptionCode) {
+public class NotFoundRepliesByUsersException extends CustomException {
+    public NotFoundRepliesByUsersException(ErrorCode exceptionCode) {
         super(exceptionCode);
     }
 }

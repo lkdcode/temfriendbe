@@ -1,10 +1,10 @@
 package com.temfriend.backend.module.users.common.exception.custom;
 
-import com.temfriend.backend.global.common.exception.custom.AppException;
-import com.temfriend.backend.global.common.exception.custom.ExceptionCode;
+import com.temfriend.backend.global.common.exception.custom.CustomException;
+import com.temfriend.backend.global.common.exception.custom.ErrorCode;
 
-public class NotFoundUsersByNicknameException extends AppException {
-    public NotFoundUsersByNicknameException(ExceptionCode exceptionCode) {
+public class NotFoundUsersByNicknameException extends CustomException {
+    public NotFoundUsersByNicknameException(ErrorCode exceptionCode) {
         super(exceptionCode);
     }
 }

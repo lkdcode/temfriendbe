@@ -1,10 +1,10 @@
 package com.temfriend.backend.module.points.common.exception.custom;
 
-import com.temfriend.backend.global.common.exception.custom.AppException;
-import com.temfriend.backend.global.common.exception.custom.ExceptionCode;
+import com.temfriend.backend.global.common.exception.custom.CustomException;
+import com.temfriend.backend.global.common.exception.custom.ErrorCode;
 
-public class NotFoundPointsByUsersException extends AppException {
-    public NotFoundPointsByUsersException(ExceptionCode exceptionCode) {
+public class NotFoundPointsByUsersException extends CustomException {
+    public NotFoundPointsByUsersException(ErrorCode exceptionCode) {
         super(exceptionCode);
     }
 }

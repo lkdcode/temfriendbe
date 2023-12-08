@@ -4,7 +4,7 @@ import com.temfriend.backend.module.users.auth.dto.request.AuthRequestDTO;
 import com.temfriend.backend.module.users.common.exception.custom.DuplicateUsersException;
 import com.temfriend.backend.module.users.common.exception.custom.NotFoundUsersByEmailException;
 import com.temfriend.backend.module.users.common.exception.custom.PasswordMismatchException;
-import com.temfriend.backend.module.users.common.exception.enums.UsersException;
+import com.temfriend.backend.module.users.common.exception.error.UsersErrorCode;
 import com.temfriend.backend.module.users.domain.repository.UsersRepository;
 import com.temfriend.backend.module.users.signup.dto.request.UsersSignUpRequest;
 import lombok.RequiredArgsConstructor;
@@ -27,28 +27,28 @@ public class UsersValidator {
 
     private void verifyInputPasswords(String password, String confirmPassword) {
         if (!password.equals(confirmPassword)) {
-            throw new PasswordMismatchException(UsersException.PASSWORD_MISMATCH_ERROR);
+            throw new PasswordMismatchException(UsersErrorCode.PASSWORD_MISMATCH_ERROR);
         }
     }
 
     private void verifyDuplicateEmail(String email) {
         boolean exists = usersRepository.existsByEmail(email);
         if (exists) {
-            throw new DuplicateUsersException(UsersException.DUPLICATE_USERS_EMAIL);
+            throw new DuplicateUsersException(UsersErrorCode.DUPLICATE_USERS_EMAIL);
         }
     }
 
     private void verifyDuplicateNickname(String nickname) {
         boolean exists = usersRepository.existsByProfile_Nickname(nickname);
         if (exists) {
-            throw new DuplicateUsersException(UsersException.DUPLICATE_USERS_NICKNAME);
+            throw new DuplicateUsersException(UsersErrorCode.DUPLICATE_USERS_NICKNAME);
         }
     }
 
     private void verifyUserNotExistsByEmail(String email) {
         boolean exists = usersRepository.existsByEmail(email);
         if (exists) {
-            throw new NotFoundUsersByEmailException(UsersException.NOT_FOUNT_USERS_FROM_EMAIL);
+            throw new NotFoundUsersByEmailException(UsersErrorCode.NOT_FOUNT_USERS_FROM_EMAIL);
         }
     }
 }
