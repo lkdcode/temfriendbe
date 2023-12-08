@@ -12,7 +12,7 @@ public interface PostsQueryMapper {
 
     PostsQueryMapper INSTANCE = Mappers.getMapper(PostsQueryMapper.class);
 
-    PostsQueryResponseDTO.Get createResponseGetFrom(Posts posts);
+    PostsQueryResponseDTO.Get convertGetFrom(Posts posts);
 
-    List<PostsQueryResponseDTO.Get> createListResponseGetFrom(List<Posts> postsList);
+    List<PostsQueryResponseDTO.Get> convertGetListFrom(List<Posts> postsList);
 }
