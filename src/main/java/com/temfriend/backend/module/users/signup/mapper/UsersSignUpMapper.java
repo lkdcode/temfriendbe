@@ -11,5 +11,5 @@ public interface UsersSignUpMapper {
     UsersSignUpMapper INSTANCE = Mappers.getMapper(UsersSignUpMapper.class);
 
     @Mapping(target = "password", source = "password")
-    Users SignUpDTOToUsers(UsersSignUpRequest.Create request, String password);
+    Users convertUsersFrom(UsersSignUpRequest.Create request, String password);
 }
