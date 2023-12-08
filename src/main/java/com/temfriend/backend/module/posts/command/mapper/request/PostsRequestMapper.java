@@ -10,6 +10,6 @@ import org.mapstruct.factory.Mappers;
 public interface PostsRequestMapper {
     PostsRequestMapper INSTANCE = Mappers.getMapper(PostsRequestMapper.class);
 
-    Posts createDTOToPosts(PostsCommandRequestDTO.Create request, Users users);
+    Posts convertPostsFrom(PostsCommandRequestDTO.Create request, Users users);
 
 }

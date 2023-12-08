@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.users.domain;
 
-import com.temfriend.backend.global.domain.BaseEntity;
+import com.temfriend.backend.global.common.domain.BaseEntity;
 import com.temfriend.backend.module.users.domain.enums.Authority;
 import com.temfriend.backend.module.users.domain.enums.Grade;
 import lombok.AccessLevel;
@@ -29,7 +29,6 @@ public class Users extends BaseEntity {
     @Embedded
     private Profile profile;
 
-
     @Builder
     public Users(String email, String password, String grade, String name, String nickname, String img) {
         this.email = email;
@@ -41,5 +40,15 @@ public class Users extends BaseEntity {
                 .nickname(nickname)
                 .img(img)
                 .build();
+    }
+
+    @Override
+    public void remove() {
+        super.markAsDeleted();
+    }
+
+    @Override
+    public void restored() {
+        super.markAsRestored();
     }
 }

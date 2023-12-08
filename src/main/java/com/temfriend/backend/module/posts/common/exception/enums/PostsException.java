@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.posts.common.exception.enums;
 
-import com.temfriend.backend.global.exception.custom.ExceptionCode;
+import com.temfriend.backend.global.common.exception.custom.ExceptionCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

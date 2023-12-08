@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.points.domain;
 
-import com.temfriend.backend.global.domain.BaseEntity;
+import com.temfriend.backend.global.common.domain.BaseEntity;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -35,6 +35,16 @@ public class Points extends BaseEntity {
 
     public void addPostsCreateScore() {
         this.usersScore += ScoreList.POSTS_CREATE.getScore();
+    }
+
+    @Override
+    public void remove() {
+        super.markAsDeleted();
+    }
+
+    @Override
+    public void restored() {
+        super.markAsRestored();
     }
 
     @Getter

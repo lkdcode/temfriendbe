@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.posts.domain;
 
-import com.temfriend.backend.global.domain.BaseEntity;
+import com.temfriend.backend.global.common.domain.BaseEntity;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -13,6 +13,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PACKAGE)
 @Entity
 public class Posts extends BaseEntity {
+    // TODO : 제목과 내용 길이 제한
     @Column(nullable = false)
     private String title;
     @Column(nullable = false)
@@ -36,5 +37,15 @@ public class Posts extends BaseEntity {
         if (content != null) {
             this.content = content;
         }
+    }
+
+    @Override
+    public void remove() {
+        super.markAsDeleted();
+    }
+
+    @Override
+    public void restored() {
+        super.markAsRestored();
     }
 }

@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.users.auth.api;
 
-import com.temfriend.backend.global.response.SuccessResponse;
+import com.temfriend.backend.global.common.response.SuccessResponse;
 import com.temfriend.backend.global.security.CustomUsersDetail;
 import com.temfriend.backend.module.users.auth.dto.request.AuthRequestDTO;
 import com.temfriend.backend.module.users.auth.dto.response.AuthResponseDTO;

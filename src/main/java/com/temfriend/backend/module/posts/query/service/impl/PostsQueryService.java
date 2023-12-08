@@ -23,7 +23,7 @@ public class PostsQueryService implements PostsQueryUsecase {
         Posts posts = postsLoadService.loadPostsFromId(id);
 
         return PostsQueryMapper.INSTANCE
-                .createResponseGetFrom(posts);
+                .convertGetFrom(posts);
     }
 
     @Override
@@ -42,6 +42,6 @@ public class PostsQueryService implements PostsQueryUsecase {
 
     private List<PostsQueryResponseDTO.Get> getListResponseGetFrom(List<Posts> postsList) {
         return PostsQueryMapper.INSTANCE
-                .createListResponseGetFrom(postsList);
+                .convertGetListFrom(postsList);
     }
 }

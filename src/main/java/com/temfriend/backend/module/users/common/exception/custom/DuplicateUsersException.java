@@ -1,7 +1,7 @@
 package com.temfriend.backend.module.users.common.exception.custom;
 
-import com.temfriend.backend.global.exception.custom.AppException;
-import com.temfriend.backend.global.exception.custom.ExceptionCode;
+import com.temfriend.backend.global.common.exception.custom.AppException;
+import com.temfriend.backend.global.common.exception.custom.ExceptionCode;
 
 public class DuplicateUsersException extends AppException {
     public DuplicateUsersException(ExceptionCode exceptionCode) {

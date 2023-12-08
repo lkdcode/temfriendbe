@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.posts.command.api;
 
-import com.temfriend.backend.global.response.SuccessResponse;
+import com.temfriend.backend.global.common.response.SuccessResponse;
 import com.temfriend.backend.global.security.CustomUsersDetail;
 import com.temfriend.backend.module.posts.command.dto.request.PostsCommandRequestDTO;
 import com.temfriend.backend.module.posts.command.dto.response.PostsCommandResponseDTO;
