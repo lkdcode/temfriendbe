@@ -33,13 +33,19 @@ public class Replies extends BaseEntity {
         this.posts = posts;
     }
 
+    public void updateFor(String content) {
+        if (content != null) {
+            this.content = content;
+        }
+    }
+
     @Override
-    protected void remove() {
+    public void remove() {
         super.markAsDeleted();
     }
 
     @Override
-    protected void restored() {
+    public void restored() {
         super.markAsRestored();
     }
 }
