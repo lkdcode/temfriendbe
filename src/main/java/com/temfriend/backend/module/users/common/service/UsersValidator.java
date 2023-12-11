@@ -9,8 +9,10 @@ import com.temfriend.backend.module.users.domain.repository.UsersRepository;
 import com.temfriend.backend.module.users.signup.dto.request.UsersSignUpRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class UsersValidator {
     private final UsersRepository usersRepository;
