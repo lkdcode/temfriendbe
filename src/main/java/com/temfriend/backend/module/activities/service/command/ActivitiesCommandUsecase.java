@@ -1,9 +1,9 @@
 package com.temfriend.backend.module.activities.service.command;
 
-import com.temfriend.backend.global.security.CustomUsersDetail;
+import com.temfriend.backend.module.users.domain.Users;
 
 public interface ActivitiesCommandUsecase {
-    void executeUpdateLoginTime(CustomUsersDetail customUsersDetail);
+    void executeUpdatePostsCreateTime(Users users);
 
-    void executeUpdatePostsCreateTime(CustomUsersDetail customUsersDetail);
+    void executeUpdateLoginTime(Users users);
 }
