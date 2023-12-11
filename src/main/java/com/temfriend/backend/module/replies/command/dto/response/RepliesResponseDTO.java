@@ -21,7 +21,7 @@ public sealed interface RepliesResponseDTO permits Create, Update, Delete {
 
     @Builder
     record Delete(
-            String message
+            String content
     ) implements RepliesResponseDTO {
     }
 }
