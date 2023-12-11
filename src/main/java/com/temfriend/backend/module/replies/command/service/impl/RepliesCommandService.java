@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class RepliesCommandService implements RepliesCommandUsecase {
+    private static final String REPLIES_DELETE_SUCCESS_MESSAGE = "삭제된 댓글입니다.";
     private final RepliesRepository repliesRepository;
     private final UsersLoadService usersLoadService;
     private final PostsLoadService postsLoadService;
@@ -55,7 +56,7 @@ public class RepliesCommandService implements RepliesCommandUsecase {
 
         repliesValidator.validateAuthorship(replies, users);
 
-        replies.updateFor(replies.getContent());
+        replies.updateFor(request.content());
 
         return RepliesResponseMapper.INSTANCE
                 .convertUpdateDTOFrom(replies);
@@ -74,7 +75,7 @@ public class RepliesCommandService implements RepliesCommandUsecase {
         replies.remove();
 
         return RepliesResponseDTO.Delete.builder()
-                .message("성공적으로 삭제했습니다.")
+                .content(REPLIES_DELETE_SUCCESS_MESSAGE)
                 .build();
     }
 }
