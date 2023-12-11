@@ -1,4 +1,4 @@
-package com.temfriend.backend.module.points.common.exception.error;
+package com.temfriend.backend.module.points.global.exception.error;
 
 import com.temfriend.backend.global.common.exception.custom.ErrorCode;
 import lombok.Getter;

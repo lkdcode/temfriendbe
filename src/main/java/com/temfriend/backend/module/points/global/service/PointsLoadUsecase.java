@@ -1,4 +1,4 @@
-package com.temfriend.backend.module.points.common.service;
+package com.temfriend.backend.module.points.global.service;
 
 import com.temfriend.backend.module.users.domain.Users;
 import com.temfriend.backend.module.points.domain.Points;

@@ -6,8 +6,8 @@ import com.temfriend.backend.module.posts.command.dto.request.PostsCommandReques
 import com.temfriend.backend.module.posts.command.dto.response.PostsCommandResponseDTO;
 import com.temfriend.backend.module.posts.command.mapper.request.PostsRequestMapper;
 import com.temfriend.backend.module.posts.command.service.PostsCommandUsecase;
-import com.temfriend.backend.module.posts.common.service.PostsLoadService;
-import com.temfriend.backend.module.posts.common.service.PostsValidator;
+import com.temfriend.backend.module.posts.global.service.PostsLoadService;
+import com.temfriend.backend.module.posts.global.service.PostsValidator;
 import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.posts.domain.repository.PostsRepository;
 import com.temfriend.backend.module.users.global.service.UsersLoadService;

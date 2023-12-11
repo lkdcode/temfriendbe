@@ -1,15 +1,15 @@
 package com.temfriend.backend.module.replies.command.service.impl;
 
 import com.temfriend.backend.global.security.CustomUsersDetail;
-import com.temfriend.backend.module.posts.common.service.PostsLoadService;
+import com.temfriend.backend.module.posts.global.service.PostsLoadService;
 import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.replies.command.dto.request.RepliesRequestDTO;
 import com.temfriend.backend.module.replies.command.dto.response.RepliesResponseDTO;
 import com.temfriend.backend.module.replies.command.mapper.request.RepliesRequestMapper;
 import com.temfriend.backend.module.replies.command.mapper.response.RepliesResponseMapper;
 import com.temfriend.backend.module.replies.command.service.RepliesCommandUsecase;
-import com.temfriend.backend.module.replies.common.service.RepliesLoadService;
-import com.temfriend.backend.module.replies.common.service.RepliesValidator;
+import com.temfriend.backend.module.replies.global.service.RepliesLoadService;
+import com.temfriend.backend.module.replies.global.service.RepliesValidator;
 import com.temfriend.backend.module.replies.domain.Replies;
 import com.temfriend.backend.module.replies.domain.repository.RepliesRepository;
 import com.temfriend.backend.module.users.global.service.UsersLoadService;

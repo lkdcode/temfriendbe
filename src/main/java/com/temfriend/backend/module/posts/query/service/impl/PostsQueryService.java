@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.posts.query.service.impl;
 
-import com.temfriend.backend.module.posts.common.service.PostsLoadService;
+import com.temfriend.backend.module.posts.global.service.PostsLoadService;
 import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.posts.query.dto.response.PostsQueryResponseDTO;
 import com.temfriend.backend.module.posts.query.mapper.response.PostsQueryMapper;

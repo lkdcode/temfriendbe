@@ -1,7 +1,7 @@
-package com.temfriend.backend.module.posts.common.service;
+package com.temfriend.backend.module.posts.global.service;
 
-import com.temfriend.backend.module.posts.common.exception.custom.NotFoundPostsByIdException;
-import com.temfriend.backend.module.posts.common.exception.enums.PostsErrorCode;
+import com.temfriend.backend.module.posts.global.exception.custom.NotFoundPostsByIdException;
+import com.temfriend.backend.module.posts.global.exception.enums.PostsErrorCode;
 import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.posts.domain.repository.PostsRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.temfriend.backend.module.posts.common.exception.enums;
+package com.temfriend.backend.module.posts.global.exception.enums;
 
 import com.temfriend.backend.global.common.exception.custom.ErrorCode;
 import lombok.Getter;

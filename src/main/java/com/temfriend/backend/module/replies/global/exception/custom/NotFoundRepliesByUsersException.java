@@ -1,4 +1,4 @@
-package com.temfriend.backend.module.replies.common.exception.custom;
+package com.temfriend.backend.module.replies.global.exception.custom;
 
 import com.temfriend.backend.global.common.exception.custom.CustomException;
 import com.temfriend.backend.global.common.exception.custom.ErrorCode;

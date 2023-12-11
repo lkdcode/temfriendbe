@@ -1,7 +1,7 @@
-package com.temfriend.backend.module.replies.common.service;
+package com.temfriend.backend.module.replies.global.service;
 
-import com.temfriend.backend.module.replies.common.exception.custom.NotFoundRepliesByIdException;
-import com.temfriend.backend.module.replies.common.exception.error.RepliesErrorCode;
+import com.temfriend.backend.module.replies.global.exception.custom.NotFoundRepliesByIdException;
+import com.temfriend.backend.module.replies.global.exception.error.RepliesErrorCode;
 import com.temfriend.backend.module.replies.domain.Replies;
 import com.temfriend.backend.module.replies.domain.repository.RepliesRepository;
 import com.temfriend.backend.module.users.domain.Users;
