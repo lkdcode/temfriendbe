@@ -15,10 +15,6 @@ public class UsersPasswordService {
         return passwordEncoder.encode(rawPassword);
     }
 
-    public boolean matches(String rawPassword, String encodedPassword) {
-        return passwordEncoder.matches(rawPassword, encodedPassword);
-    }
-
     public void validatePassword(String rawPassword, String encodedPassword) {
         if (!passwordEncoder.matches(rawPassword, encodedPassword)) {
             throw new LogInFailException(UsersErrorCode.LOGIN_FAIL_INVALID_CREDENTIALS);
