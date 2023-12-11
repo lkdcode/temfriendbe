@@ -1,8 +1,8 @@
 package com.temfriend.backend.module.users.domain;
 
 import com.temfriend.backend.global.common.domain.BaseEntity;
-import com.temfriend.backend.module.users.domain.enums.Authority;
-import com.temfriend.backend.module.users.domain.enums.Grade;
+import com.temfriend.backend.module.users.domain.rule.Authority;
+import com.temfriend.backend.module.users.domain.rule.Grade;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package com.temfriend.backend.module.users.domain.enums;
+package com.temfriend.backend.module.users.domain.rule;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

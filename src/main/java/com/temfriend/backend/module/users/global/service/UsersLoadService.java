@@ -1,8 +1,8 @@
-package com.temfriend.backend.module.users.common.service;
+package com.temfriend.backend.module.users.global.service;
 
-import com.temfriend.backend.module.users.common.exception.custom.LogInFailException;
-import com.temfriend.backend.module.users.common.exception.custom.NotFoundUsersByEmailException;
-import com.temfriend.backend.module.users.common.exception.error.UsersErrorCode;
+import com.temfriend.backend.module.users.global.exception.custom.LogInFailException;
+import com.temfriend.backend.module.users.global.exception.custom.NotFoundUsersByEmailException;
+import com.temfriend.backend.module.users.global.exception.error.UsersErrorCode;
 import com.temfriend.backend.module.users.domain.Users;
 import com.temfriend.backend.module.users.domain.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;

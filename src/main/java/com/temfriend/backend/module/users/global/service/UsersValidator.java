@@ -1,10 +1,10 @@
-package com.temfriend.backend.module.users.common.service;
+package com.temfriend.backend.module.users.global.service;
 
 import com.temfriend.backend.module.users.auth.dto.request.AuthRequestDTO;
-import com.temfriend.backend.module.users.common.exception.custom.DuplicateUsersException;
-import com.temfriend.backend.module.users.common.exception.custom.NotFoundUsersByEmailException;
-import com.temfriend.backend.module.users.common.exception.custom.PasswordMismatchException;
-import com.temfriend.backend.module.users.common.exception.error.UsersErrorCode;
+import com.temfriend.backend.module.users.global.exception.custom.DuplicateUsersException;
+import com.temfriend.backend.module.users.global.exception.custom.NotFoundUsersByEmailException;
+import com.temfriend.backend.module.users.global.exception.custom.PasswordMismatchException;
+import com.temfriend.backend.module.users.global.exception.error.UsersErrorCode;
 import com.temfriend.backend.module.users.domain.repository.UsersRepository;
 import com.temfriend.backend.module.users.signup.dto.request.UsersSignUpRequest;
 import lombok.RequiredArgsConstructor;

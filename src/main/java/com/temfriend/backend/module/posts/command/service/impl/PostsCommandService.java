@@ -10,7 +10,7 @@ import com.temfriend.backend.module.posts.common.service.PostsLoadService;
 import com.temfriend.backend.module.posts.common.service.PostsValidator;
 import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.posts.domain.repository.PostsRepository;
-import com.temfriend.backend.module.users.common.service.UsersLoadService;
+import com.temfriend.backend.module.users.global.service.UsersLoadService;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,7 +1,7 @@
-package com.temfriend.backend.module.users.common.service;
+package com.temfriend.backend.module.users.global.service;
 
-import com.temfriend.backend.module.users.common.exception.custom.LogInFailException;
-import com.temfriend.backend.module.users.common.exception.error.UsersErrorCode;
+import com.temfriend.backend.module.users.global.exception.custom.LogInFailException;
+import com.temfriend.backend.module.users.global.exception.error.UsersErrorCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

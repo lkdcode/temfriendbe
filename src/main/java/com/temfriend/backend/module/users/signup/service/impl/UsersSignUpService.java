@@ -1,8 +1,8 @@
 package com.temfriend.backend.module.users.signup.service.impl;
 
 import com.temfriend.backend.module.points.command.PointsCommandUsecase;
-import com.temfriend.backend.module.users.common.service.UsersPasswordService;
-import com.temfriend.backend.module.users.common.service.UsersValidator;
+import com.temfriend.backend.module.users.global.service.UsersPasswordService;
+import com.temfriend.backend.module.users.global.service.UsersValidator;
 import com.temfriend.backend.module.users.domain.Users;
 import com.temfriend.backend.module.users.domain.repository.UsersRepository;
 import com.temfriend.backend.module.users.signup.dto.request.UsersSignUpRequest;
@@ -25,7 +25,7 @@ public class UsersSignUpService implements UsersSignUpUsecase {
 
     @Override
     public UsersSignUpResponse.Create executeSignUp(UsersSignUpRequest.Create request) {
-        Users users = makeUsers(request);
+        Users users = makeUsersFrom(request);
         Users savedUsers = usersRepository.save(users);
         pointsCommandUsecase.executeCreatePointsByUsers(savedUsers);
 
@@ -34,13 +34,11 @@ public class UsersSignUpService implements UsersSignUpUsecase {
                 .build();
     }
 
-    private Users makeUsers(UsersSignUpRequest.Create request) {
+    private Users makeUsersFrom(UsersSignUpRequest.Create request) {
         usersValidator.validateSignUpRequest(request);
-        String encodedPassword = makeEncodedPassword(request);
-        return UsersSignUpMapper.INSTANCE.convertUsersFrom(request, encodedPassword);
-    }
+        String encodedPassword = usersPasswordService.encode(request.password());
 
-    private String makeEncodedPassword(UsersSignUpRequest.Create request) {
-        return usersPasswordService.encode(request.password());
+        return UsersSignUpMapper.INSTANCE
+                .convertUsersFrom(request, encodedPassword);
     }
 }

@@ -12,7 +12,7 @@ import com.temfriend.backend.module.replies.common.service.RepliesLoadService;
 import com.temfriend.backend.module.replies.common.service.RepliesValidator;
 import com.temfriend.backend.module.replies.domain.Replies;
 import com.temfriend.backend.module.replies.domain.repository.RepliesRepository;
-import com.temfriend.backend.module.users.common.service.UsersLoadService;
+import com.temfriend.backend.module.users.global.service.UsersLoadService;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
