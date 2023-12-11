@@ -1,6 +1,7 @@
 package com.temfriend.backend.module.posts.command.service.impl;
 
 import com.temfriend.backend.global.security.CustomUsersDetail;
+import com.temfriend.backend.module.points.command.PointsCommandUsecase;
 import com.temfriend.backend.module.posts.command.dto.request.PostsCommandRequestDTO;
 import com.temfriend.backend.module.posts.command.dto.response.PostsCommandResponseDTO;
 import com.temfriend.backend.module.posts.command.mapper.request.PostsRequestMapper;
@@ -11,7 +12,6 @@ import com.temfriend.backend.module.posts.domain.Posts;
 import com.temfriend.backend.module.posts.domain.repository.PostsRepository;
 import com.temfriend.backend.module.users.common.service.UsersLoadService;
 import com.temfriend.backend.module.users.domain.Users;
-import com.temfriend.backend.module.points.command.PointsCommandUsecase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +21,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class PostsCommandService implements PostsCommandUsecase {
+    private static final String POST_CREATION_SUCCESS_MESSAGE = "게시글 작성에 성공했습니다.";
+    private static final String POST_UPDATE_SUCCESS_MESSAGE = "업데이트에 성공했습니다.";
+    private static final String POST_DELETION_SUCCESS_MESSAGE = "삭제에 성공했습니다.";
     private final PostsLoadService postsLoadService;
     private final PostsValidator postsValidator;
     private final PostsRepository postsRepository;
@@ -36,11 +39,12 @@ public class PostsCommandService implements PostsCommandUsecase {
         Posts posts = PostsRequestMapper.INSTANCE.convertPostsFrom(request, users);
 
         Posts saved = postsRepository.save(posts);
+
         pointsCommandUsecase.executeIncrementPointsFromCreatePosts(users);
 
         return PostsCommandResponseDTO.Create.builder()
                 .id(saved.getId())
-                .message("게시글 작성에 성공했습니다.")
+                .message(POST_CREATION_SUCCESS_MESSAGE)
                 .build();
     }
 
@@ -57,7 +61,7 @@ public class PostsCommandService implements PostsCommandUsecase {
 
         return PostsCommandResponseDTO.Update.builder()
                 .id(posts.getId())
-                .message("업데이트에 성공했습니다.")
+                .message(POST_UPDATE_SUCCESS_MESSAGE)
                 .build();
     }
 
@@ -73,7 +77,7 @@ public class PostsCommandService implements PostsCommandUsecase {
 
         return PostsCommandResponseDTO.Delete.builder()
                 .id(id)
-                .message("삭제에 성공했습니다.")
+                .message(POST_DELETION_SUCCESS_MESSAGE)
                 .build();
     }
 }
