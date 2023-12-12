@@ -40,6 +40,10 @@ public abstract class BaseEntity {
         this.status = Status.Y;
     }
 
+    protected String getStatus() {
+        return this.status.name();
+    }
+
     private enum Status {
         Y, N
     }
