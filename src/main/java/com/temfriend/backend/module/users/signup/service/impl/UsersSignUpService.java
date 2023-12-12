@@ -1,10 +1,10 @@
 package com.temfriend.backend.module.users.signup.service.impl;
 
 import com.temfriend.backend.module.points.command.PointsCommandUsecase;
-import com.temfriend.backend.module.users.global.service.UsersPasswordService;
-import com.temfriend.backend.module.users.global.service.UsersValidator;
 import com.temfriend.backend.module.users.domain.Users;
 import com.temfriend.backend.module.users.domain.repository.UsersRepository;
+import com.temfriend.backend.module.users.global.service.UsersPasswordService;
+import com.temfriend.backend.module.users.global.service.UsersValidator;
 import com.temfriend.backend.module.users.signup.dto.request.UsersSignUpRequest;
 import com.temfriend.backend.module.users.signup.dto.rseponse.UsersSignUpResponse;
 import com.temfriend.backend.module.users.signup.mapper.UsersSignUpMapper;
@@ -27,6 +27,7 @@ public class UsersSignUpService implements UsersSignUpUsecase {
     public UsersSignUpResponse.Create executeSignUp(UsersSignUpRequest.Create request) {
         Users users = makeUsersFrom(request);
         Users savedUsers = usersRepository.save(users);
+
         pointsCommandUsecase.executeCreatePointsByUsers(savedUsers);
 
         return UsersSignUpResponse.Create.builder()
