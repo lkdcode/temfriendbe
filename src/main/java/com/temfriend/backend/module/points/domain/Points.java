@@ -37,6 +37,10 @@ public class Points extends BaseEntity {
         this.usersScore += ScoreList.POSTS_CREATE.getScore();
     }
 
+    public void addRepliesCreateScore() {
+        this.usersScore += ScoreList.REPLIES_CREATE.getScore();
+    }
+
     @Override
     public void remove() {
         super.markAsDeleted();
@@ -52,6 +56,7 @@ public class Points extends BaseEntity {
     private enum ScoreList {
         POSTS_CREATE(30L),
         LOG_IN(50L),
+        REPLIES_CREATE(15L),
         ;
         private final Long score;
     }

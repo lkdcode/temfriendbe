@@ -34,11 +34,25 @@ public class Activities extends BaseEntity {
     }
 
     public void recordLoginTime() {
-        this.loginTime = LocalDateTime.now();
+        if (canRecordLoginCreationTime()) {
+            this.loginTime = LocalDateTime.now();
+        }
     }
 
     public void recordPostsCreationTime() {
-        this.postsCreateTime = LocalDateTime.now();
+        if (canRecordPostCreationTime()) {
+            this.postsCreateTime = LocalDateTime.now();
+        }
+    }
+
+    public boolean canRecordPostCreationTime() {
+        LocalDateTime threeHoursAgo = LocalDateTime.now().minusHours(3);
+        return this.postsCreateTime.isBefore(threeHoursAgo);
+    }
+
+    public boolean canRecordLoginCreationTime() {
+        LocalDateTime threeHoursAgo = LocalDateTime.now().minusHours(3);
+        return this.loginTime.isBefore(threeHoursAgo);
     }
 
     @Override

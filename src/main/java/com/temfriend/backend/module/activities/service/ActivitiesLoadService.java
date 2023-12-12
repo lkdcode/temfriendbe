@@ -3,7 +3,7 @@ package com.temfriend.backend.module.activities.service;
 import com.temfriend.backend.module.activities.domain.Activities;
 import com.temfriend.backend.module.activities.domain.repository.ActivitiesRepository;
 import com.temfriend.backend.module.activities.exception.custom.NotFoundActivitiesByUsersException;
-import com.temfriend.backend.module.activities.exception.enums.ActivitiesException;
+import com.temfriend.backend.module.activities.exception.error.ActivitiesErrorCode;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +17,6 @@ public class ActivitiesLoadService {
 
     public Activities loadActivitiesByUsers(Users users) {
         return historiesRepository.findByUsers(users)
-                .orElseThrow(() -> new NotFoundActivitiesByUsersException(ActivitiesException.NOT_FOUNT_ACTIVITIES_FROM_USERS));
+                .orElseThrow(() -> new NotFoundActivitiesByUsersException(ActivitiesErrorCode.NOT_FOUNT_ACTIVITIES_FROM_USERS));
     }
 }
