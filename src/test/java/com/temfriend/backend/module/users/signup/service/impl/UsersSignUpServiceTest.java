@@ -35,6 +35,7 @@ class UsersSignUpServiceTest {
 
     @BeforeEach
     void initialize() {
+        this.usersRepository.deleteAll();
         this.usersSignUpRequest = generateValidRequest();
     }
 
