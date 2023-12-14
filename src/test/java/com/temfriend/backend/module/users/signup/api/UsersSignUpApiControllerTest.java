@@ -96,7 +96,7 @@ class UsersSignUpApiControllerTest extends BaseApiControllerTest {
 
     @DisplayName("Exception : 유효하지 않은 비밀번호를 포함한 회원가입 요청은 익셉션을 발생시킬 것이다.")
     @ParameterizedTest(name = "Invalid Password : \"{0}\"")
-    @ValueSource(strings = {"password", "123123456", "password123", "pass", "password!@#$", "PASSword123", "password!@#$", "password!!123"})
+    @ValueSource(strings = {"password", "123123456", "password123", "pass", "password!@#$", "PASSword123", "password!@#$", "password!!123", "passWORD12345!@#"})
     void exception_thrownInvalidRequestWithIncorrectPasswordTest(String invalidPassword) throws Exception {
         ResultActions resultActions = mockMvc.perform(post(URL)
                         .contentType(MediaType.APPLICATION_JSON)
