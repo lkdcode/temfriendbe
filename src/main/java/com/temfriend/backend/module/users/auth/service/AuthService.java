@@ -43,7 +43,7 @@ public class AuthService {
                 .build();
     }
 
-    public AuthResponseDTO.LogOut executeLogOut(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, CustomUsersDetail customUsersDetail) {
+    public AuthResponseDTO.LogOut executeLogOut(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) {
         String key = jwtProvider.getAuthorization();
         String token = cookieProvider.findCookieByKey(httpServletRequest, key);
 
