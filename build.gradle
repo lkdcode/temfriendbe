@@ -57,12 +57,16 @@ dependencies {
     testAnnotationProcessor "org.mapstruct:mapstruct-processor:1.5.2.Final"
     implementation 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
     annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
-    
+
     // --------- Swagger
     implementation 'io.springfox:springfox-boot-starter:3.0.0'
 
     // --------- redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // --------- mockito
+    testImplementation 'org.mockito:mockito-core:3.12.4'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.12.4'
 
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
