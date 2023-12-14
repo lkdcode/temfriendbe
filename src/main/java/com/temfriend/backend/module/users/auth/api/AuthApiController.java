@@ -35,9 +35,8 @@ public class AuthApiController {
     public SuccessResponse<AuthResponseDTO.LogOut> getLogOut(
             HttpServletRequest httpServletRequest
             , HttpServletResponse httpServletResponse
-            , @AuthenticationPrincipal CustomUsersDetail customUsersDetail
     ) {
-        AuthResponseDTO.LogOut response = authService.executeLogOut(httpServletRequest, httpServletResponse, customUsersDetail);
+        AuthResponseDTO.LogOut response = authService.executeLogOut(httpServletRequest, httpServletResponse);
         return SuccessResponse.ok(response);
     }
 }
