@@ -30,16 +30,40 @@ public class Users extends BaseEntity {
     private Profile profile;
 
     @Builder
-    public Users(String email, String password, String grade, String name, String nickname, String img) {
+    public Users(String email, String password, String name, String nickname, String img) {
         this.email = email;
         this.password = password;
-        this.grade = Grade.From(grade);
+        this.grade = Grade.BRONZE;
         this.authority = Authority.USERS;
         this.profile = Profile.builder()
                 .name(name)
                 .nickname(nickname)
                 .img(img)
                 .build();
+    }
+
+    public String getName() {
+        return this.profile.getName();
+    }
+
+    public String getNickname() {
+        return this.profile.getNickname();
+    }
+
+    public String getImg() {
+        return this.profile.getImg();
+    }
+
+    public String getAuthority() {
+        return this.authority.name();
+    }
+
+    public String getGrade() {
+        return this.grade.name();
+    }
+
+    public String getStatus() {
+        return super.getStatus();
     }
 
     @Override
