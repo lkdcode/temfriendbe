@@ -4,7 +4,6 @@ application-jwt.yml
 application-redis.yml
 application-flyway.yml
 
-README.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
