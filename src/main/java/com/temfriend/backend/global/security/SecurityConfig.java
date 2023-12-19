@@ -22,8 +22,14 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 public class SecurityConfig {
     public static final String[] PUBLIC = new String[]{
+            // --- h2 console
             "/h2-console/**"
-            ,
+            // --- swagger
+            , "/swagger-ui.html"
+            , "/swagger-ui/**"
+            , "/v2/api-docs"
+            , "/webjars/**"
+            , "/swagger-resources/**"
     };
 
     public static final String[] GET_PUBLIC = new String[]{
