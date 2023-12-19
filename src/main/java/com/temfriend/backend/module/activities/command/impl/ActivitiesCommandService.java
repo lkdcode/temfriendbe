@@ -1,9 +1,9 @@
-package com.temfriend.backend.module.activities.common.service.command.impl;
+package com.temfriend.backend.module.activities.command.impl;
 
 import com.temfriend.backend.module.activities.common.service.ActivitiesLoadService;
 import com.temfriend.backend.module.activities.domain.Activities;
 import com.temfriend.backend.module.activities.domain.repository.ActivitiesRepository;
-import com.temfriend.backend.module.activities.common.service.command.ActivitiesCommandUsecase;
+import com.temfriend.backend.module.activities.command.ActivitiesCommandUsecase;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

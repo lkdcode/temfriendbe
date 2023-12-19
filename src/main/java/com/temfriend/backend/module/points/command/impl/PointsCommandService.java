@@ -1,7 +1,7 @@
 package com.temfriend.backend.module.points.command.impl;
 
-import com.temfriend.backend.module.activities.common.service.command.ActivitiesCommandUsecase;
-import com.temfriend.backend.module.activities.common.service.query.ActivitiesQueryUsecase;
+import com.temfriend.backend.module.activities.command.ActivitiesCommandUsecase;
+import com.temfriend.backend.module.activities.query.ActivitiesQueryUsecase;
 import com.temfriend.backend.module.points.command.PointsCommandUsecase;
 import com.temfriend.backend.module.points.common.service.PointsLoadUsecase;
 import com.temfriend.backend.module.users.domain.Users;

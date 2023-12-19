@@ -1,4 +1,4 @@
-package com.temfriend.backend.module.activities.common.service.command;
+package com.temfriend.backend.module.activities.command;
 
 import com.temfriend.backend.module.users.domain.Users;
 

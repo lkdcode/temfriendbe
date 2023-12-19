@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.users.signup.service.impl;
 
-import com.temfriend.backend.module.activities.common.service.command.ActivitiesCommandUsecase;
+import com.temfriend.backend.module.activities.command.ActivitiesCommandUsecase;
 import com.temfriend.backend.module.points.command.PointsCommandUsecase;
 import com.temfriend.backend.module.users.domain.Users;
 import com.temfriend.backend.module.users.domain.repository.UsersRepository;
