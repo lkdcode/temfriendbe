@@ -1,5 +1,7 @@
 package com.temfriend.backend.global.security;
 
+import com.temfriend.backend.global.common.exception.handler.GlobalAccessDeniedHandler;
+import com.temfriend.backend.global.common.exception.handler.GlobalAuthenticationEntryPoint;
 import com.temfriend.backend.global.jwt.JWTProvider;
 import com.temfriend.backend.global.filter.JWTAuthenticationFilter;
 import com.temfriend.backend.global.security.cookie.CookieProvider;
@@ -45,17 +47,19 @@ public class SecurityConfig {
 
     private final JWTProvider jwtProvider;
     private final CookieProvider cookieService;
+    private final GlobalAccessDeniedHandler globalAccessDeniedHandler;
+    private final GlobalAuthenticationEntryPoint globalAuthenticationEntryPoint;
 
     @Autowired
     private Environment environment;
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        System.out.println("===============filter chain=================");
+        System.out.println(globalAuthenticationEntryPoint);
+        System.out.println(globalAccessDeniedHandler);
+        System.out.println("===============filter chain=================");
         return http
-                .headers()
-                .frameOptions()
-                .disable()
-                .and()
                 .csrf()
                 .disable()
                 .sessionManagement(
@@ -68,6 +72,10 @@ public class SecurityConfig {
                                 .antMatchers(PUBLIC).permitAll()
                                 .antMatchers("/admin/**").hasAuthority("ADMIN")
                                 .anyRequest().authenticated())
+                .exceptionHandling()
+                .accessDeniedHandler(globalAccessDeniedHandler)
+                .authenticationEntryPoint(globalAuthenticationEntryPoint)
+                .and()
                 .addFilterBefore(
                         new JWTAuthenticationFilter(jwtProvider, cookieService),
                         UsernamePasswordAuthenticationFilter.class)
