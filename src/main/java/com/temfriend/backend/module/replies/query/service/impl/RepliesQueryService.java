@@ -1,6 +1,6 @@
 package com.temfriend.backend.module.replies.query.service.impl;
 
-import com.temfriend.backend.module.replies.global.service.RepliesLoadService;
+import com.temfriend.backend.module.replies.common.service.RepliesLoadService;
 import com.temfriend.backend.module.replies.domain.Replies;
 import com.temfriend.backend.module.replies.query.dto.response.RepliesQueryDTO;
 import com.temfriend.backend.module.replies.query.mapper.RepliesQueryMapper;
