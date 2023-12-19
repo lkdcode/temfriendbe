@@ -9,9 +9,9 @@ import com.temfriend.backend.module.replies.command.mapper.request.RepliesReques
 import com.temfriend.backend.module.replies.command.mapper.response.RepliesResponseMapper;
 import com.temfriend.backend.module.replies.command.service.RepliesCommandUsecase;
 import com.temfriend.backend.module.replies.common.service.RepliesLoadService;
+import com.temfriend.backend.module.replies.common.service.RepliesSaveService;
 import com.temfriend.backend.module.replies.common.service.RepliesValidator;
 import com.temfriend.backend.module.replies.domain.Replies;
-import com.temfriend.backend.module.replies.domain.repository.RepliesRepository;
 import com.temfriend.backend.module.users.common.service.UsersLoadService;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class RepliesCommandService implements RepliesCommandUsecase {
     private static final String REPLIES_DELETE_SUCCESS_MESSAGE = "삭제된 댓글입니다.";
-    private final RepliesRepository repliesRepository;
+    private final RepliesSaveService repliesSaveService;
     private final UsersLoadService usersLoadService;
     private final PostsLoadService postsLoadService;
     private final RepliesLoadService repliesLoadService;
@@ -39,7 +39,7 @@ public class RepliesCommandService implements RepliesCommandUsecase {
         Posts posts = postsLoadService.loadPostsFromId(postsId);
 
         Replies replies = RepliesRequestMapper.INSTANCE.convertRepliesFrom(request, users, posts);
-        Replies saved = repliesRepository.save(replies);
+        Replies saved = repliesSaveService.save(replies);
 
         return RepliesResponseMapper.INSTANCE
                 .convertCreateDTOFrom(saved);

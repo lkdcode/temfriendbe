@@ -1,11 +1,9 @@
 package com.temfriend.backend.module.users.signup.service.impl;
 
-import com.temfriend.backend.module.activities.command.ActivitiesCommandUsecase;
-import com.temfriend.backend.module.points.command.PointsCommandUsecase;
-import com.temfriend.backend.module.users.domain.Users;
-import com.temfriend.backend.module.users.domain.repository.UsersRepository;
 import com.temfriend.backend.module.users.common.service.UsersPasswordService;
+import com.temfriend.backend.module.users.common.service.UsersSaveService;
 import com.temfriend.backend.module.users.common.service.UsersValidator;
+import com.temfriend.backend.module.users.domain.Users;
 import com.temfriend.backend.module.users.signup.dto.request.UsersSignUpRequest;
 import com.temfriend.backend.module.users.signup.dto.rseponse.UsersSignUpResponse;
 import com.temfriend.backend.module.users.signup.mapper.UsersSignUpMapper;
@@ -19,18 +17,14 @@ import org.springframework.transaction.annotation.Transactional;
 @RequiredArgsConstructor
 public class UsersSignUpService implements UsersSignUpUsecase {
     private static final String SIGN_UP_SUCCESS_MESSAGE = "회원가입에 성공했습니다.";
-    private final UsersRepository usersRepository;
+    private final UsersSaveService usersSaveService;
     private final UsersValidator usersValidator;
     private final UsersPasswordService usersPasswordService;
-    private final PointsCommandUsecase pointsCommandUsecase;
-    private final ActivitiesCommandUsecase  activitiesCommandUsecase;
 
     @Override
     public UsersSignUpResponse.Create executeSignUp(UsersSignUpRequest.Create request) {
         Users users = makeUsersFrom(request);
-        Users savedUsers = usersRepository.save(users);
-
-        pointsCommandUsecase.executeCreatePointsByUsers(savedUsers);
+        usersSaveService.save(users);
 
         return UsersSignUpResponse.Create.builder()
                 .message(SIGN_UP_SUCCESS_MESSAGE)
