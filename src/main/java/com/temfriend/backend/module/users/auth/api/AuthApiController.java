@@ -28,8 +28,7 @@ public class AuthApiController {
 
     @Operation(summary = "로그인 API", description = "이메일과 패스워드로 로그인을 합니다.", tags = "사용자 로그인 및 로그 아웃", responses = {
             @ApiResponse(responseCode = "200", description = "로그인에 성공했습니다.")
-            , @ApiResponse(responseCode = "400", description = "로그인 요청 값이 잘 못 됐습니다.")
-            , @ApiResponse(responseCode = "409", description = "유효하지 않은 회원 정보입니다.")
+            , @ApiResponse(responseCode = "401", description = "아이디 혹은 비밀번호가 틀렸습니다.")
     })
     @PostMapping("/log-in")
     public SuccessResponse<AuthResponseDTO.LogIn> getLogIn(
@@ -41,8 +40,8 @@ public class AuthApiController {
     }
 
     @Operation(summary = "로그아웃 API", description = "발급된 토큰을 만료시킵니다.", tags = "사용자 로그인 및 로그 아웃", responses = {
-            @ApiResponse(responseCode = "200", description = "토큰 만료에 성공했습니다.")
-            , @ApiResponse(responseCode = "400", description = "토큰이 존재하지 않습니다.")
+            @ApiResponse(responseCode = "200", description = "발급된 토큰을 만료시켜 로그아웃에 성공했습니다.")
+            , @ApiResponse(responseCode = "403", description = "토큰이 없을 경우 접근이 불가합니다.")
     })
     @PostMapping("/log-out")
     public SuccessResponse<AuthResponseDTO.LogOut> getLogOut(
