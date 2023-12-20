@@ -1,13 +1,12 @@
 package com.temfriend.backend.module.users.auth.service;
 
 import com.temfriend.backend.global.jwt.JWTProvider;
-import com.temfriend.backend.global.security.CustomUsersDetail;
 import com.temfriend.backend.global.security.cookie.CookieProvider;
 import com.temfriend.backend.module.points.command.PointsCommandUsecase;
 import com.temfriend.backend.module.users.auth.dto.request.AuthRequestDTO;
 import com.temfriend.backend.module.users.auth.dto.response.AuthResponseDTO;
-import com.temfriend.backend.module.users.global.service.UsersLoadService;
-import com.temfriend.backend.module.users.global.service.UsersPasswordService;
+import com.temfriend.backend.module.users.common.service.UsersLoadService;
+import com.temfriend.backend.module.users.common.service.UsersPasswordService;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

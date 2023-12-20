@@ -6,11 +6,11 @@ import com.temfriend.backend.module.posts.command.dto.request.PostsCommandReques
 import com.temfriend.backend.module.posts.command.dto.response.PostsCommandResponseDTO;
 import com.temfriend.backend.module.posts.command.mapper.request.PostsRequestMapper;
 import com.temfriend.backend.module.posts.command.service.PostsCommandUsecase;
-import com.temfriend.backend.module.posts.global.service.PostsLoadService;
-import com.temfriend.backend.module.posts.global.service.PostsValidator;
+import com.temfriend.backend.module.posts.common.service.PostsLoadService;
+import com.temfriend.backend.module.posts.common.service.PostsSaveService;
+import com.temfriend.backend.module.posts.common.service.PostsValidator;
 import com.temfriend.backend.module.posts.domain.Posts;
-import com.temfriend.backend.module.posts.domain.repository.PostsRepository;
-import com.temfriend.backend.module.users.global.service.UsersLoadService;
+import com.temfriend.backend.module.users.common.service.UsersLoadService;
 import com.temfriend.backend.module.users.domain.Users;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -24,9 +24,9 @@ public class PostsCommandService implements PostsCommandUsecase {
     private static final String POST_CREATION_SUCCESS_MESSAGE = "게시글 작성에 성공했습니다.";
     private static final String POST_UPDATE_SUCCESS_MESSAGE = "업데이트에 성공했습니다.";
     private static final String POST_DELETION_SUCCESS_MESSAGE = "삭제에 성공했습니다.";
+    private final PostsSaveService postsSaveService;
     private final PostsLoadService postsLoadService;
     private final PostsValidator postsValidator;
-    private final PostsRepository postsRepository;
     private final UsersLoadService usersLoadService;
     private final PointsCommandUsecase pointsCommandUsecase;
 
@@ -38,7 +38,7 @@ public class PostsCommandService implements PostsCommandUsecase {
         Users users = usersLoadService.loadUsersFromEmail(customUsersDetail.getEmail());
         Posts posts = PostsRequestMapper.INSTANCE.convertPostsFrom(request, users);
 
-        Posts saved = postsRepository.save(posts);
+        Posts saved = postsSaveService.save(posts);
 
         pointsCommandUsecase.executeIncrementPointsFromCreatePosts(users);
 

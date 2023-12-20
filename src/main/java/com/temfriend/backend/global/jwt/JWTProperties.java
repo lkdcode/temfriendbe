@@ -15,10 +15,14 @@ import java.security.Key;
 public class JWTProperties {
     private String issuer;
     private String secretKey;
-    private Long expired;
+    private String expired;
 
     public Key getSecretKey() {
         byte[] keyBytes = DatatypeConverter.parseBase64Binary(secretKey);
         return new SecretKeySpec(keyBytes, SignatureAlgorithm.HS256.getJcaName());
+    }
+
+    public Long getExpired() {
+        return Long.parseLong(expired);
     }
 }

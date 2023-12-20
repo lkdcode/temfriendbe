@@ -53,7 +53,7 @@ public class Activities extends BaseEntity {
 
     public boolean canRecordLoginCreationTime() {
         if (this.loginTime == null) return true;
-        LocalDateTime threeHoursAgo = LocalDateTime.now().minusHours(3);
+        LocalDateTime threeHoursAgo = LocalDateTime.now().minusHours(6);
         return this.loginTime.isBefore(threeHoursAgo);
     }
 

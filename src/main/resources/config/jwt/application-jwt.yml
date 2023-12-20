@@ -1,0 +1,5 @@
+app:
+  jwt:
+    issuer: lkdcode
+    secret_key: ${JWT_SECRET_KEY}
+    expired: ${JWT_EXPIRED}
