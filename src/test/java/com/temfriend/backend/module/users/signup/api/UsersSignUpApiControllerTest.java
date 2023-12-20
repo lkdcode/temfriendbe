@@ -20,11 +20,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @DisplayName("Api : UsersSignUpApiControllerTest")
 class UsersSignUpApiControllerTest extends BaseApiControllerTest {
-    private static final String EMAIL = "tester@test.com";
+    private static final String EMAIL = "tester123@test.com";
     private static final String PASSWORD = "passWORD123!@#";
     private static final String CONFIRM_PASSWORD = "passWORD123!@#";
     private static final String NAME = "홍길동";
-    private static final String NICKNAME = "의적";
+    private static final String NICKNAME = "나는의적이다";
     private static final String IMG = "img.png";
     private static final String SIGN_UP_SUCCESS_MESSAGE = "회원가입에 성공했습니다.";
     private static final String SUCCESS_MESSAGE = "요청을 성공적으로 불러왔습니다.";
@@ -36,7 +36,7 @@ class UsersSignUpApiControllerTest extends BaseApiControllerTest {
 
     @DisplayName("Success : 올바른 이메일은 회원가입 요청에 성공할 것이다.")
     @ParameterizedTest(name = "Valid email : \"{0}\"")
-    @ValueSource(strings = {"tester@test.com", "test123@test.io", "test@test.net", "test@test.store"})
+    @ValueSource(strings = {"tester9@test.com", "test123@test.io", "test@test.net", "test@test.store"})
     void success_signUpRequestWithValidEmailTest(String email) throws Exception {
         mockMvc.perform(post(URL)
                         .contentType(MediaType.APPLICATION_JSON)
