@@ -1,0 +1,4 @@
+api:
+  users: /api/users
+  posts: /api/posts
+  replies: /api/replies
