@@ -21,19 +21,30 @@
 <img src="https://img.shields.io/badge/H2-4479A1?style=flat-square&logo=H2&logoColor=white&style=flat"/></a>
 <img src="https://img.shields.io/badge/Flyway-CC0200?logo=flyway&logoColor=fff&style=flat-square"/></a>
 <br/>
-<img src="https://img.shields.io/badge/Swagger-85EA2D?style=flat-square&logo=Swagger&logoColor=white&style=flat"/></a>
+<img src="https://img.shields.io/badge/AWS Elastic Beanstalk-white?logo=amazon&logoColor=#FF9900&style=flat-square"/></a>
+<img src="https://img.shields.io/badge/AWS EC2-white?logo=amazonec2&logoColor=#FF9900&style=flat-square"/></a>
+<img src="https://img.shields.io/badge/AWS RDS-white?logo=amazon&logoColor=#FF9900&style=flat-square"/></a>
+<img src="https://img.shields.io/badge/AWS Elastic Cache-white?logo=amazon&logoColor=#FF9900&style=flat-square"/></a>
+<img src="https://img.shields.io/badge/githubActions-white?logo=githubactions&logoColor=#2088FF&style=flat-square"/></a>
+<br/>
 <img src="https://img.shields.io/badge/Gradle-4429A1?style=flat-square&logo=gradle&logoColor=white&style=flat"/></a>
+<img src="https://img.shields.io/badge/Swagger-85EA2D?style=flat-square&logo=Swagger&logoColor=white&style=flat"/></a>
 <img src="https://img.shields.io/badge/DBeaver-gray?logo=dbeaver&logoColor=#382923&style=flat-square"/></a>
 <img src="https://img.shields.io/badge/Postman-gray?logo=Postman&logoColor=#FF6C37&style=flat-square"/></a>
-<img src="https://img.shields.io/badge/github-gray?logo=github&logoColor=#181717&style=flat-square"/></a>
+<img src="https://img.shields.io/badge/intellijidea-gray?logo=intellijidea&logoColor=#000000&style=flat-square"/></a>
+<br/>
 <br/>
 
+### 🚀 EndPoint
 
-[//]: # (### 🏛️ Architecture)
+[도메인](http://temfriend-env.eba-6bxfcpqr.ap-northeast-2.elasticbeanstalk.com/)</br>
+[Swagger](http://temfriend-env.eba-6bxfcpqr.ap-northeast-2.elasticbeanstalk.com/swagger-ui/index.html)
 
-[//]: # (Swagger : /swagger-ui/index.html<br/>)
+<br/>
 
-[//]: # (git -> gtiHubActions -> AWS -> SpringBootPrj -> RDS -> MySQL)
+### 🏛️ Architecture
+
+![Architecture.png](docs%2FArchitecture.png)
 
 <br/>
 
@@ -95,7 +106,7 @@
 
 <br/>
 
-### 🚀 커밋 컨벤션
+### 🔖 커밋 컨벤션
 
 <u>"태그 [클래스명] : 내용"</u> 의 형태로 커밋한다.<br/>
 <br/>

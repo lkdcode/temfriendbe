@@ -3,6 +3,8 @@ package com.temfriend.backend.module.users.domain.rule;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
+
 @Getter
 @RequiredArgsConstructor
 public enum Authority {
@@ -11,13 +13,9 @@ public enum Authority {
     ;
 
     public static Authority from(String name) {
-        switch (name) {
-            case "ADMIN" -> {
-                return Authority.ADMIN;
-            }
-            case default, "USERS" -> {
-                return Authority.USERS;
-            }
-        }
+        return Arrays.stream(Authority.values())
+                .filter(auth -> auth.name().equals(name))
+                .findFirst()
+                .orElse(USERS);
     }
 }

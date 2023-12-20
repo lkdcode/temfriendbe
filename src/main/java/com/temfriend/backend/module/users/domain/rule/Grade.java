@@ -3,6 +3,8 @@ package com.temfriend.backend.module.users.domain.rule;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Arrays;
+
 @Getter
 @RequiredArgsConstructor
 public enum Grade {
@@ -12,16 +14,9 @@ public enum Grade {
     ;
 
     public static Grade From(String name) {
-        switch (name) {
-            case "SILVER" -> {
-                return Grade.SILVER;
-            }
-            case "GOLD" -> {
-                return Grade.GOLD;
-            }
-            case default, null, "BRONZE" -> {
-                return Grade.BRONZE;
-            }
-        }
+        return Arrays.stream(Grade.values())
+                .filter(grade -> grade.name().equals(name))
+                .findFirst()
+                .orElse(BRONZE);
     }
 }
